@@ -4,4 +4,140 @@
   color: rgb(123, 161, 18);
 }
 
+.content {
+  max-width: 1140px;
+  margin: auto;
+}
 
+.home-tokenbanner {
+  background: url('../../assets/bg-tokenbaner.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.tokenbaner-title {
+  width: 100%;
+  color: white;
+  text-shadow: -1px -1px 7px #222222;
+}
+
+.tokenbaner-title > h2 > a {
+  text-decoration: none;
+  transition: color .3s ease-out;
+  color: rgb(150, 50, 150);
+}
+
+.tokenbaner-title > h2 > a:hover {
+  color: rgb(180, 70, 180);
+}
+
+.tokenbaner-title > h1 {
+  font-size: 3rem;
+}
+
+.tokenbaner-title > h2 {
+  font-size: 2.5rem;
+}
+
+.tokenbaner-title > h2 > span {
+  color: rgb(150, 50, 150);
+}
+
+.home-howit {
+  color: #222222;
+  padding: 10px;
+}
+
+.home-howit > h1 {
+  font-size: 3rem;
+  color: rgb(90, 0, 90);
+}
+
+.howit-grid {
+  display: grid;
+  grid-column: 1fr 1fr 1fr;
+  grid-template: "seller driver customer";
+}
+
+.howit-seller {
+  grid-area: "seller";
+  padding: 0 10px;
+}
+
+.howit-driver {
+  grid-area: "driver";
+  padding: 0 10px;
+}
+
+.howit-customer {
+  grid-area: "customer";
+  padding: 0 10px;
+}
+
+.howit-title {
+  font-size: 2rem;
+}
+
+.howit-title:hover > .howit-title-border {
+  width: 100px;
+}
+
+.howit-title-border {
+  margin: auto;
+  width: 0px;
+  background: rgb(90, 0, 90);
+  height: 4px;
+  transition: width .3s ease-out;
+}
+
+.usecase-title {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  color: #222222;
+  padding: 10px;
+}
+
+.usecase-title > h3 {
+  background: #bbbbbb;
+  font-size: 1.5rem;
+  padding: 10px;
+  flex-grow: 1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: rgb(150, 50, 150);
+}
+
+.usecase-title > h3:hover {
+  background: #aaaaaa;
+}
+
+.usecase-title > label {
+  background:rgb(90, 1, 90);
+  font-size: 2.5rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  color: #bbbbbb;
+  transition: transform .3s ease-out;
+}
+
+.usecase-title > label:hover {
+  transform: translateX(10px);
+}
+
+@media screen and (max-width: 1000px) {
+  .home-howit {
+    display: grid;
+    grid-column: 1fr;
+    grid-template:  "seller" 
+                    "driver" 
+                    "customer";
+    color: #222222;
+  }
+}
