@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './Header.css'
-import {  Link } from 'react-router-dom';
+import {  NavLink, Link } from 'react-router-dom';
 
 
 class Header extends Component {
@@ -9,17 +9,14 @@ class Header extends Component {
         return (
             <div  className= "header">
                     <div className= "headerLeft">
-                        <div>
-                            <Link to="/home"  className = "headerLink">Home</Link>
-                        </div>
-                        <div>
-                            <Link to="/home" className = "headerLink">About</Link>
-                        </div>
+                        
+                        <NavLink to="/home"  className = "headerLink">Home</NavLink>
+                        
+                        <NavLink to="/home" className = "headerLink">About</NavLink>
                     </div>
                     <div className = "headerRight">
-                        <div>
-                            <Link to="/sign-in" className = "headerLink">Sign in</Link>
-                        </div>
+
+                        <NavLink to="/sign-in" className = "headerLink" >Sign in</NavLink>
                     </div>
             </div>
         )

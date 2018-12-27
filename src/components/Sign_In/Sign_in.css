@@ -3,15 +3,16 @@
     flex-flow: row nowrap;
     justify-content: space-around;
     font-size: 160%;
-    background-color: rgb(224, 214, 71);
-    color: rgb(123, 161, 18);
+
+    color: rgb(204, 127, 26);
+    padding-top: 50px; 
 }
 .linkButton{
     padding: 15px;
     text-decoration: none;
-    border: 3px solid rgb(123, 161, 18);
-    color: rgb(123, 161, 18);
+    border: 3px solid rgb(204, 127, 26);
+    color: rgb(204, 127, 26);
 }
 .linkButton:hover{
-    background-color:  rgba(123, 161, 18, 0.322);
+    background-color:  rgba(204, 127, 26, 0.452);
 }

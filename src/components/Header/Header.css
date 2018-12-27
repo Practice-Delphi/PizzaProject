@@ -6,18 +6,49 @@
     flex-flow: row wrap;
     color: rgb(204, 127, 26);
     font-size: 220%;
+    justify-content: space-around;
 
 
 }
+.headerRight {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
 
+}
 .headerLeft {
     display: flex;
     flex-flow: row nowrap;
 }
-.header > div > div {
-    margin: 25px;
+.headerLeft > a {
+    display: flex;
+    align-items: center;
+    border-bottom: 4px solid transparent;
+    padding: 0 25px;
+}
+.headerRight > a {
+    display: flex;
+    align-items: center;
+    border-bottom: 4px solid transparent;
+    padding: 0 25px;
+}
+.headerLeft > a:hover {
+    border-bottom: 4px solid rgb(224, 214, 71);
+}
+.headerRight > a:hover {
+    border-bottom: 4px solid rgb(224, 214, 71);
+}
+
+.headerLinkdiv {
+    padding: 25px;
 }
 .headerLink {
     text-decoration : none;
     color: rgb(204, 127, 26);
+    
 }
+.headerLinkdiv :hover {
+    border-bottom: 4px solid rgb(224, 214, 71);
+}
+
+

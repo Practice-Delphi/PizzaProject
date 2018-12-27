@@ -8,6 +8,9 @@ import './App.css';
 import { testRun } from '../../actions/testaction';
 import Home   from '../Home/Home';
 import SignIn from '../Sign_In/Sign_in';
+import SignInCell from '../Sign_In/Sign_in_Sell/Sign_in_Sell';
+import SignInCast from '../Sign_In/Sign_in_Cast/Sign_in_Cast';
+
 
 // test connect redux to react
 import { connect } from 'react-redux';
@@ -25,6 +28,8 @@ class App extends Component {
           <Route exact path = "/" component= {Home} />
           <Route exact path = "/home" component= {Home} />
           <Route exact path = "/sign-in" component= {SignIn} />
+          <Route exact path = "/sign-in-cast" component= {SignInCast} />
+          <Route exact path = "/sign-in-sell" component= {SignInCell} />
         </Switch>
       </Router>
     );

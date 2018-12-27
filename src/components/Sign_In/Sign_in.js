@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import { connect } from 'react-redux';
 import './Sign_in.css';
 import Header from '../Header/Header'
@@ -12,8 +13,8 @@ class SignIn extends Component{
             <div >
               <Header></Header>
               <div className="signin"> 
-                <Link to="/home"  className = "linkButton">Sign In seller</Link>
-                <Link to="/home" className = "linkButton">Sign In Castomer</Link>
+                <Link to="/sign-in-sell"  className = "linkButton">Sign In seller</Link>
+                <Link to="/sign-in-cast" className = "linkButton">Sign In Castomer</Link>
               </div>
             </div>
         
