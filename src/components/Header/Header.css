@@ -26,16 +26,22 @@
     border-bottom: 4px solid transparent;
     padding: 0 25px;
 }
-.headerRight > a {
+.headerRight > a, button {
+    cursor: pointer;
     display: flex;
     align-items: center;
+    background: none;
+    font-size: 2rem;
+    border: none;
     border-bottom: 4px solid transparent;
     padding: 0 25px;
+    outline: none;
 }
+
 .headerLeft > a:hover {
     border-bottom: 4px solid rgb(224, 214, 71);
 }
-.headerRight > a:hover {
+.headerRight > a:hover, button:hover {
     border-bottom: 4px solid rgb(224, 214, 71);
 }
 

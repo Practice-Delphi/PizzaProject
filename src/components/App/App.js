@@ -14,6 +14,7 @@ import SignUp from "../Sign_up/Sign_up";
 import SignUpForm from '../Sign_up/Sign_up_form';
 // import SignUpCell from '../Sign_up/Sign_up_Sell/Sign_up_Sell';
 // import SignUpCust from '../Sign_up/Sign_up_Cust/Sign_up_Cust';
+import Profile from '../Profile/Profile';
 
 // test connect redux to react
 import { connect } from 'react-redux';
@@ -36,6 +37,7 @@ class App extends Component {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/sign-up-cust" render={() => <SignUpForm type="customer" />} />
           <Route exact path="/sign-up-sell" render={() => <SignUpForm type="seller" />} />
+          <Route exact path="/profile" component={Profile} />
         </Switch>
       </Router>
     );

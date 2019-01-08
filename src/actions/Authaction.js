@@ -87,13 +87,21 @@ export const checkAndGetToken = (dispatch, getState) => {
 }
 
 export const refreshToken = (tok, action, ...actionparams) => (dispatch, getState) => {
+    console.log('refresh');
     if (!getState().tokenData.loading) {
         dispatch(tokenStart());
         const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
-        if (token && token.refresh_token) {
-            const refresh = token.refresh_token
-            return fetch(`${apiurl}/api/Auth/refreshtoken?refreshToken=${refresh}`, {
+        if (token) {
+            const data = {
+                authToken: token.authToken,
+                refreshToken: token.refreshToken
+            }
+            return fetch(`${apiurl}/Refresh`, {
                 method: 'POST',
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(data),
             })
                 .then(res => {
                     if (res.status === 200) {
@@ -103,6 +111,7 @@ export const refreshToken = (tok, action, ...actionparams) => (dispatch, getStat
                     }
                 })
                 .then(newtoken => {
+                    console.log(newtoken);
                     newtoken.role = token.role;
                     newtoken.id = token.id;
                     dispatch(tokenSuccess(newtoken));
@@ -154,8 +163,10 @@ export const registerUser = (role, regdata) => (dispatch, getState) => {
             if (Array.isArray(data[Object.keys(data)[0]])) {
                 dispatch(registerFailed(data[Object.keys(data)[0]][0]));
             } else {
-                dispatch(registerSuccess('Registration complete, please confirm you email and sign in'));
-                // dispatch(loginUser({ userName: regdata.email, password: regdata.password }, role));
+                dispatch(registerSuccess('Registration complete'));
+                data.role = role;
+                dispatch(tokenSuccess(data));
+                dispatch(getUser(data));
             }
         })
         .catch(error => { dispatch(registerFailed(error.message)) });
@@ -181,10 +192,10 @@ export const loginUser = (logdata, role) => (dispatch, getState) => {
         })
         .then(token => {
             console.log(token);
-            if (token.auth_token) {
+            if (token.authToken) {
                 token.role = role;
                 dispatch(tokenSuccess(token));
-                // dispatch(getUser(token));
+                dispatch(getUser(token));
             } else {
                 dispatch(tokenFailed());
                 // console.log(token[Object.keys(token)[0]][0]);
@@ -196,4 +207,54 @@ export const loginUser = (logdata, role) => (dispatch, getState) => {
             dispatch(userFailed(error.message));
             // dispatch(logout());
         });
+}
+
+
+export const getUser = (tok) => (dispatch, getState) => {
+    const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
+    if (token) {
+        let Role = '';
+        switch(token.role) {
+            case 'customer': { Role = 'Customer'; break };
+            case 'driver': { Role = 'Driver'; break };
+            case 'seller': { Role = 'Owner'; break };
+            default: { Role = 'Customer' };
+        }
+
+        dispatch(userStart());
+
+        return fetch(`${apiurl}/Account/${Role}/Get${Role}`, {
+            method: 'GET',
+            // mode: 'no-cors',
+            headers: new Headers({
+                'Authorization': `Bearer ${token.authToken}`
+            })
+        })
+            .then(res => {
+                if (res.status === 200 || res.status === 204 || res.status === 201) {
+                    return res.json();
+                } else if (res.status === 400) {
+                    return res.json();
+                } else if (res.status === 404) {
+                    dispatch(userFailed(res.statusText));
+                } else if (res.status === 401) {
+                    dispatch(refreshToken(token, getUser));
+                } else {
+                    throw new Error(res.statusText);
+                }
+            })
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    data.role = token.role;
+                    dispatch(userSuccess(data));
+                    if (data.profilePictureId) {
+                        // dispatch(getPhoto(data.profilePictureId, token));
+                    }
+                }
+            })
+            .catch(error => dispatch(userFailed(error.message)));
+    } else {
+        dispatch(logout());
+    }
 }

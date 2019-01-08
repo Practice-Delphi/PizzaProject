@@ -32,6 +32,13 @@ class SignInForm extends Component {
         });
     }
 
+    componentDidUpdate() {
+        if (this.props.userData.user) {
+            console.log('replace');
+            this.props.history.replace('/profile');
+        }
+    }
+
     submit() {
         const { model, errors, ...data } = this.state;
         model.validate(data);
@@ -83,10 +90,13 @@ SignInForm.propTypes = {
     userData: PropTypes.object,
     type: PropTypes.string.isRequired,
     login: PropTypes.func,
+    history: PropTypes.object,
+    userData: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
-
+    history: state.historyData.history,
+    userData: state.userData,
 });
 
 const mapDispatchToProps = dispatch => ({

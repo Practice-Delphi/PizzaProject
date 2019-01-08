@@ -57,6 +57,12 @@ class SignUpForm extends Component {
         })
     }
 
+    componentDidUpdate() {
+        if (this.props.userData.user) {
+            this.props.history.replace('/profile');
+        }
+    }
+
     submit() {
         const { model, errors, confirmPassword, ...data } = this.state;
         // const data = {
@@ -154,11 +160,13 @@ SignUpForm.propTypes = {
     userData: PropTypes.object,
     registerData: PropTypes.object,
     type: PropTypes.string.isRequired,
+    history: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
     userData: state.userData,
     registerData: state.registerData,
+    history: state.historyData.history,
 });
 
 const mapDispatchToProps = dispatch => ({
