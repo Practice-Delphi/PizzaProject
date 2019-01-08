@@ -7,11 +7,12 @@ body {
   font-family: 'ProximaNovaRegular';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background: #eeeeee;
 }
 code {
   font-family: 'ProximaNovaRegular';
 }
-
 
 @font-face {
   font-family: "ProximaNovaRegular";
