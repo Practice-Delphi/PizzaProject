@@ -7,6 +7,7 @@
     color: rgb(204, 127, 26);
     font-size: 220%;
     justify-content: space-around;
+    border-bottom: 1px solid  rgba(224, 214, 71, 0.26);
 
 
 }
@@ -20,13 +21,7 @@
     display: flex;
     flex-flow: row nowrap;
 }
-.headerLeft > a {
-    display: flex;
-    align-items: center;
-    border-bottom: 4px solid transparent;
-    padding: 0 25px;
-}
-.headerRight > a, button {
+.headerLeft > div {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -37,13 +32,38 @@
     padding: 0 25px;
     outline: none;
 }
+.headerRight > div {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: none;
+    font-size: 2rem;
+    border: none;
+    border-bottom: 4px solid transparent;
+    padding: 0 25px;
+    outline: none;
+}
+.castomNavLinkDiv{
+    position: relative;
+}
 
-.headerLeft > a:hover {
-    border-bottom: 4px solid rgb(224, 214, 71);
+.castomNavLinkDiv:hover > .castomHover {
+    width: 100%;
+    opacity: 1;
 }
-.headerRight > a:hover, button:hover {
-    border-bottom: 4px solid rgb(224, 214, 71);
+.castomHover{
+    position: absolute;
+    background-color: rgb(224, 214, 71);
+    width: 0%;
+    opacity: 0;
+    height: 5px;
+    bottom: -7px;
+    left: 0;
+    margin: auto;
+    transition: width .3s ease-out, opacity .3s ease-out;
 }
+
+
 
 .headerLinkdiv {
     padding: 25px;
@@ -52,6 +72,16 @@
     text-decoration : none;
     color: rgb(204, 127, 26);
     
+}
+.headerLinkButtom{
+    text-decoration : none;
+    color: rgb(204, 127, 26);
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 4px solid transparent;
+    padding: 0 25px;
+    font-size: 2rem;
 }
 .headerLinkdiv :hover {
     border-bottom: 4px solid rgb(224, 214, 71);

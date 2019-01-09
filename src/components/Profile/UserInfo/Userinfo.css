@@ -1,0 +1,17 @@
+.ProfileConteiner{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.mainProfilePage{
+    max-width: 600px;
+    padding-top: 50px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+.userProfilePhoto{
+    width: 250px;
+    height: 250px;
+}

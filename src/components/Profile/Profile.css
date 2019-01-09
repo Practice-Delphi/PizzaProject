@@ -1,0 +1,44 @@
+.ProfToolBar {
+    width: 100%;
+    background-color: rgb(95, 1, 75);
+    height: 75px;
+    top: 0px;
+    z-index: 1;
+    color: rgb(204, 127, 26);
+    font-size: 220%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    
+}
+.ProfToolBar > div {
+    display: flex;
+    flex-grow: 1;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.castomNavLinkDiv2line{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items:  center;
+    cursor: pointer;
+
+}
+
+.castomNavLinkDiv2line:hover > .castomHover2line {
+    width: 100%;
+    opacity: 1;
+}
+.castomHover2line{
+    position: absolute;
+    background-color: rgb(224, 214, 71);
+    width: 0%;
+    opacity: 0;
+    height: 5px;
+    top: -3px;
+    left: 0;
+    margin: auto;
+    transition: width .3s ease-out, opacity .3s ease-out;
+}

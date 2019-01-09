@@ -12,15 +12,15 @@ class Header extends Component {
         if (user) {
             return (
                 <div className="headerRight">
-                    <NavLink to="/profile" className="headerLink" >Profile</NavLink>
-                    <button className="headerLink" onClick={this.props.logout}>Log out</button>
+                    <div className="castomNavLinkDiv"><NavLink to="/profile" className="headerLink" >Profile</NavLink><div className="castomHover"></div></div>
+                    <div className="castomNavLinkDiv"><button className="headerLinkButtom" onClick={this.props.logout}>Log out</button><div className="castomHover"></div></div>
                 </div>
             );
         } else {
             return (
                 <div className="headerRight">
-                    <NavLink to="/sign-in" className="headerLink" >Sign in</NavLink>
-                    <NavLink to="/sign-up" className="headerLink" >Sign up</NavLink>
+                    <div className="castomNavLinkDiv"><NavLink to="/sign-in" className="headerLink" >Sign in</NavLink><div className="castomHover"></div></div>
+                    <div className="castomNavLinkDiv"><NavLink to="/sign-up" className="headerLink" >Sign up</NavLink><div className="castomHover"></div></div>
                 </div>
             );
         }
@@ -29,8 +29,8 @@ class Header extends Component {
         return (
             <div className="header">
                 <div className="headerLeft">
-                    <NavLink to="/home" className="headerLink">Home</NavLink>
-                    <NavLink to="/home" className="headerLink">About</NavLink>
+                    <div className="castomNavLinkDiv"><NavLink to="/home" className="headerLink">Home</NavLink> <div className="castomHover"></div></div>
+                    <div className="castomNavLinkDiv"><NavLink to="/home" className="headerLink">About</NavLink><div className="castomHover"></div></div>
                 </div>
                 {this.renderButtons()}
             </div>

@@ -4,11 +4,19 @@ import PropTypes from 'prop-types';
 import './Profile.css';
 
 import Header from '../Header/Header';
+import UserInfo from './UserInfo/UserInfo'
 
 import { connect } from 'react-redux';
 import { getUser } from '../../actions/authaction';
 
 class Profile extends Component {
+
+    constructor(props){
+        super(props);
+        this.state ={
+            show : 'UserInfo',
+        } 
+    } 
     
     componentDidMount() {
         if (!this.props.userData.user && !this.props.userData.loading) {
@@ -22,15 +30,44 @@ class Profile extends Component {
             this.props.history.replace('/sign-in');
         }
     }
+    renderProfile(){
+        return  (
+            <div>
+                <div className = "ProfToolBar">
+                    {this.renderToolbar()}
+                </div>
+                <div>
+                    {this.renderMain()}
+                </div>
+            </div>
+        )
+    }
+    renderToolbar() {
+        return (
+            <div >
+                <div className="castomNavLinkDiv2line" onClick = {() =>{ this.setState({show : 'UserInfo'})}}>User Info<div className="castomHover2line"></div></div>
+                <div className="castomNavLinkDiv2line" onClick = {() =>{ this.setState({show : 'Settings'})}}>Settings<div className="castomHover2line"></div></div>
+            </div>
+        )
+    }
+    renderMain(){
+        switch (this.state.show) {
+            case 'UserInfo' : return <UserInfo />;
+            case 'Settings' : return (<div><h2>22222222222222</h2></div>);
+        }
+    }
 
     render() {
-        return (
-            <div>
-                <Header></Header>
-                Profile
-            </div>
-
-        );
+        if (this.props.userData.user) {
+            return (
+                <div>
+                    <Header></Header>
+                    {this.renderProfile()}
+                   
+                </div>
+            );
+        }
+        return null;
     }
 }
 
