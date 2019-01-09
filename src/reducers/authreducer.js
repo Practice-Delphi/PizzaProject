@@ -2,10 +2,8 @@ import {
     USER_FETCH_START,
     USER_FETCH_SUCCESS,
     USER_FETCH_FAILED,
-    USER_DELETE,
     TOKEN_START,
     TOKEN_SUCCESS,
-    TOKEN_DELETE,
     TOKEN_FAILED,
     USER_REGISTER_START,
     USER_REGISTER_FAILED,
@@ -43,7 +41,6 @@ const userData = (state = initUserState, action) => {
         case USER_FETCH_START: return Object.assign({}, state, { loading: true });
         case USER_FETCH_SUCCESS: return Object.assign({}, state, { user: action.user, loading: false });
         case USER_FETCH_FAILED: return Object.assign({}, state, { error: action.error, loading: false });
-        case USER_DELETE: return Object.assign({}, initUserState);
         case CLEAR_ERRORS: return Object.assign({}, state, { error: null });
         case CLEAR_ALL: return Object.assign({}, initUserState);
         default: return state;
@@ -62,7 +59,7 @@ const tokenData = (state = initTokenState, action) => {
             localStorage.setItem(tokenStorageKey, JSON.stringify(action.token));
             return { token: action.token, loading: false };
         }
-        case TOKEN_DELETE: {
+        case CLEAR_ALL: {
             localStorage.removeItem(tokenStorageKey);
             return initTokenState;
         }

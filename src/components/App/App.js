@@ -18,11 +18,13 @@ import Profile from '../Profile/Profile';
 
 // test connect redux to react
 import { connect } from 'react-redux';
+import { getUser } from '../../actions/authaction';
 
 class App extends Component {
 
   componentDidMount() {
     this.props.runTest('yak vono mene zayebalo...');
+    this.props.getUser();
   }
 
   render() {
@@ -48,6 +50,7 @@ App.propTypes = {
   testData: PropTypes.object,
   runTest: PropTypes.func,
   history: PropTypes.object,
+  getUser: PropTypes.func,
 }
 const mapStateToProps = state => ({
   testData: state.testData,
@@ -55,6 +58,7 @@ const mapStateToProps = state => ({
 })
 const mapDispatchtoProps = dispatch => ({
   runTest: (mess) => { dispatch(testRun(mess)) },
+  getUser: () => { dispatch(getUser()) },
 })
 
 export default connect(mapStateToProps, mapDispatchtoProps)(App);

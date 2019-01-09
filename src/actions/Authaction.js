@@ -3,7 +3,6 @@ import { apiurl } from '../appconfig';
 export const USER_FETCH_START = 'USER_FETCH_START';
 export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
 export const USER_FETCH_FAILED = 'USER_FETCH_ERROR';
-export const USER_DELETE = 'USER_DELETE';
 
 export const USER_REGISTER_START = 'USER_REGISTER_START';
 export const USER_REGISTER_FAILED = 'USER_REGISTER_FAILED';
@@ -12,7 +11,6 @@ export const USER_REGISTER_SUCCESS = 'USER_REGISTER_SUCCESS';
 export const TOKEN_SUCCESS = 'TOKEN_SUCCESS';
 export const TOKEN_START = 'TOKEN_START';
 export const TOKEN_FAILED = 'TOKEN_FAILED';
-export const TOKEN_DELETE = 'TOKEN_DELETE';
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const CLEAR_ALL = 'CLEAR_ALL';
@@ -33,10 +31,6 @@ export const userSuccess = (user) => ({
 export const userFailed = (error) => ({
     type: USER_FETCH_FAILED,
     error
-});
-
-export const userDelete = () => ({
-    type: USER_DELETE
 });
 
 export const registerStart = () => ({
@@ -64,10 +58,6 @@ export const tokenSuccess = (token) => ({
 
 export const tokenFailed = () => ({
     type: TOKEN_FAILED
-});
-
-export const tokenDelete = () => ({
-    type: TOKEN_DELETE
 });
 
 export const clearAll = () => ({

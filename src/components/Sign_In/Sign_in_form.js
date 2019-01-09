@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import './Sign_in.css';
 import Header from '../Header/Header';
@@ -52,7 +53,10 @@ class SignInForm extends Component {
     }
 
     render() {
+        // UI validations errors
         const { errors } = this.state;
+        // Server Side validation error from redux
+        const { error } = this.props.userData;
         return (
             <div className="signInConteiner">
                 <div className="SignInHeader">
@@ -65,6 +69,7 @@ class SignInForm extends Component {
                 </div>
                 <div className="SignInForm">
                     <form onSubmit={(e) => { e.preventDefault() }}>
+                        <div className="signinError">{(error) ? error : ''}</div>
                         <div className="signinError">{(errors.email) ? errors.email : ''}</div>
                         <input
                             className="signInInput"
@@ -79,6 +84,7 @@ class SignInForm extends Component {
                             required />
 
                         <input className="signInInputSubmit" type="submit" value="Submit" onClick={this.submit.bind(this)} />
+                        <label className="signInLink">Dont have account already <NavLink to={`/sign-up`}>create one.</NavLink></label>
                     </form>
                 </div>
             </div>
