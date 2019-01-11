@@ -6,11 +6,13 @@ import { combineReducers } from 'redux';
 import { testData } from './testreducer'
 import { historyData } from './historyreducer';
 import { tokenData, userData, registerData } from "./authreducer";
+import { chengeddata } from './chengereducer';
 // Here combine custom reducers
 export default combineReducers({
     testData,
     historyData,
     tokenData, 
     userData,
-    registerData
+    registerData,
+    chengeddata
 });

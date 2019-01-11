@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import defaultUserPhoto from '../../../assets/default-user.png' 
 import style from "./Userinfo.css"
+import phoneIco from "../../../assets/Phone.png"
+import mailIco from "../../../assets/simpline.png"
 
 
 class UserInfo extends Component {
@@ -21,7 +23,11 @@ class UserInfo extends Component {
                 <div className="mainProfilePage">
                     <img className="userProfilePhoto" src={defaultUserPhoto} />
                     <h2> {this.props.userData.user.firstName} {this.props.userData.user.lastName}</h2>
-                    <h3>{this.props.userData.user.role}</h3>
+                    <span className="Userinfospan"><h3>{this.props.userData.user.role}</h3></span>
+                    <div >
+                        <div className="infostring"><img className="inoIcon" src={phoneIco}/><h3>{this.props.userData.user.phoneNumber}</h3></div>
+                        <div className="infostring"><img className="inoIcon" src={mailIco}/><h3>{this.props.userData.user.email}</h3></div>
+                    </div>
                     <div>
                     
                     </div>

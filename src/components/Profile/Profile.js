@@ -5,6 +5,7 @@ import './Profile.css';
 
 import Header from '../Header/Header';
 import UserInfo from './UserInfo/UserInfo'
+import Settings from './Settings/Settings'
 
 import { connect } from 'react-redux';
 import { getUser } from '../../actions/authaction';
@@ -53,7 +54,7 @@ class Profile extends Component {
     renderMain(){
         switch (this.state.show) {
             case 'UserInfo' : return <UserInfo />;
-            case 'Settings' : return (<div><h2>22222222222222</h2></div>);
+            case 'Settings' : return <Settings />;
         }
     }
 
