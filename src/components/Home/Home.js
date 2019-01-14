@@ -17,7 +17,7 @@ class Home extends Component {
                     <div className="tokenbaner-title">
                         <h1>Earn tokens with food trading? We say yes.</h1>
                         <h2>Revolutionizing <span>food</span> with the blockchain.</h2>
-                        <h2><NavLink to={'sign-in'}>Sign in</NavLink> and begin live in future now.</h2>
+                        <h2><NavLink to={'sign-in'}>Sign in</NavLink> and start live in future now.</h2>
                     </div>
                 </div>
                 <div className="home-howit content">

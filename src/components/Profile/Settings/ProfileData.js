@@ -1,69 +1,66 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+
+import './Settings.css';
+
 import { connect } from 'react-redux';
 import { chengeUserData } from '../../../actions/chengeaction';
 
 
 class ProfileData extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
-            firstName : null,
+        this.state = {
+            firstName: null,
             lastName: null,
             phoneNumber: null,
             password: null,
             confirmpassword: null,
             currentPassword: null,
 
-        } 
+        }
+    }
+    confirmChange() {
+        if (this.state.firstName) {
+            this.props.chengeUserData({
+                firstName: this.state.firstName,
+            })
+        }
+        if (this.state.lastName) {
+            this.props.chengeUserData({
+                lastName: this.state.lastName,
+            })
+        }
+        if (this.state.phoneNumber) {
+            this.props.chengeUserData({
+                phoneNumber: this.state.phoneNumber,
+            })
+        }
     }
 
-    confirmChange(){
-        if (this.state.firstName ) {
-            this.props.chengeUserData({
-                firstName : this.state.firstName ,
-            })
-        }
-        if (this.state.lastName ) {
-            this.props.chengeUserData({
-                lastName : this.state.lastName ,
-            })
-        }
-        if (this.state.phoneNumber ) {
-            this.props.chengeUserData({
-                phoneNumber : this.state.phoneNumber ,
-            })
-        }
-    }
-    
-    
-    render () {
+    render() {
         if (this.props.userData.user) {
             return (
-                <div>
-                    <div>
-                        <h1>Name</h1>
-                        <input type="text" placeholder="first Name"  onChange={(e) => { this.setState({ firstName: e.target.value }) }}/>
-                        <input type="text" placeholder="last Name"   onChange={(e) => { this.setState({ lastName: e.target.value  }) }}/>
-                    </div>
-                    <div>
-                        <h1>Phone Namber</h1>
-                        <input type="text" placeholder="Phone Namber"  onChange={(e) => {this.setState( {phoneNumber: e.target.value} )} }/>
-                    </div>
-                    <div>
-                        <h1>Password</h1>
-                        <h3>current Password</h3>
-                        <input type="text" placeholder="currentPassword"  onChange={(e) => {this.setState( {phoneNumber: e.target.value} )} }/>
-                        <h3>New Password</h3>
-                        <input type="text" placeholder="password"  onChange={(e) => {this.setState( { password: e.target.value} )} }/>
-                        <input type="text" placeholder="confirmpassword"  onChange={(e) => {this.setState( {confirmpassword: e.target.value} )} }/>
-                    </div>
-                    <div className="SubmtButton">
-                        <button onClick={this.confirmChange.bind(this)}>SUBMIT</button>
-                    </div>
-    
-                </div>
+                <form className="settingsForm" onClick={e => e.preventDefault()}>
+                    
+                    <h1 className="settingsLabel">Name</h1>
+                    <input type="text" placeholder="First Name" onChange={(e) => { this.setState({ firstName: e.target.value }) }} />
+                    <input type="text" placeholder="Last Name" onChange={(e) => { this.setState({ lastName: e.target.value }) }} />
+
+                    <h1 className="settingsLabel">Phone Namber</h1>
+                    <input type="text" placeholder="Phone Number" onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }} />
+
+                    <h1 className="settingsLabel">Password</h1>
+                    <h3 className="settingsLabel">Current Password</h3>
+                    <input type="text" placeholder="Current Password" onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }} />
+                    
+                    <h3 className="settingsLabel">New Password</h3>
+                    <input type="text" placeholder="Password" onChange={(e) => { this.setState({ password: e.target.value }) }} />
+                    <input type="text" placeholder="Confirm Password" onChange={(e) => { this.setState({ confirmpassword: e.target.value }) }} />
+                    <br></br>
+                    <input type = "submit" onClick={this.confirmChange.bind(this)} value="Apply"/>
+                </form>
             )
         }
     }
@@ -84,4 +81,4 @@ const mapDispatchtoProps = dispatch => ({
     chengeUserData: (data) => { dispatch(chengeUserData(data)) },
 })
 
-export default connect(mapStateToProps, mapDispatchtoProps) (ProfileData);
+export default connect(mapStateToProps, mapDispatchtoProps)(ProfileData);

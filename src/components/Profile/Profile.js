@@ -64,7 +64,6 @@ class Profile extends Component {
                 <div>
                     <Header></Header>
                     {this.renderProfile()}
-                   
                 </div>
             );
         }

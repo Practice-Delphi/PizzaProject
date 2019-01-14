@@ -1,41 +1,47 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
-
+import './Settings.css';
 import ProfileData from './ProfileData';
+
+
+import { connect } from 'react-redux';
 
 class Settings extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
-            show : 'ProfileData',
-        } 
-    } 
-    renderSettingsMain(){
+        this.state = {
+            show: 'ProfileData',
+        }
+    }
+    renderSettingsMain() {
         switch (this.state.show) {
-            case 'ProfileData' : return <ProfileData /> 
-            case 'UploadPhoto' : return <div>UploadPhoto</div> 
+            case 'ProfileData': return <ProfileData />
+            case 'UploadPhoto': return <div>UploadPhoto</div>
         }
     }
     renderSettingsTypeBar() {
         return (
-            <div>
-                <div onClick={() => {this.setState({show : 'ProfileData'})}}>
-                    <h3>Profile Data</h3>
+            <div className="settingsTypeBar">
+                <div className={`settingsTypeBarButton ${(this.state.show ==='ProfileData') ? 'selected' : ''}`}
+                    onClick={() => { this.setState({ show: 'ProfileData' }) }}>
+                    Profile Data
+                    <div className="barBorder"></div>
                 </div>
-                <div onClick={() => {this.setState({show : 'UploadPhoto'})}}>
-                    <h3>Upload Photo</h3>
+                
+                <div className={`settingsTypeBarButton ${(this.state.show ==='UploadPhoto') ? 'selected' : ''}`} 
+                    onClick={() => { this.setState({ show: 'UploadPhoto' }) }}>
+                    Upload Photo
+                    <div className="barBorder"></div>
                 </div>
+                
             </div>
         )
     }
-    render(){
+    render() {
         return (
-            <div className=" settingsConteiner">
-                <div className="settingsTypeBar">
-                    {this.renderSettingsTypeBar()}
-                </div>
+            <div className="settingsContainer">
+                {this.renderSettingsTypeBar()}
                 <div className="settingsMain">
                     {this.renderSettingsMain()}
                 </div>
@@ -55,4 +61,4 @@ const mapStateToProps = state => ({
     userData: state.userData,
 });
 
-export default connect(mapStateToProps) (Settings);
+export default connect(mapStateToProps)(Settings);

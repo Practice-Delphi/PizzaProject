@@ -16,7 +16,6 @@ class UserInfo extends Component {
         } 
     } 
 
-
     render(){
         return (
             <div className="ProfileConteiner">
@@ -29,7 +28,6 @@ class UserInfo extends Component {
                         <div className="infostring"><img className="inoIcon" src={mailIco}/><h3>{this.props.userData.user.email}</h3></div>
                     </div>
                     <div>
-                    
                     </div>
                 </div>
             </div>

@@ -1,0 +1,87 @@
+.settingsContainer {
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.settingsTypeBar {
+    width: 200px;
+    border-right: 2px solid rgb(204, 127, 26);
+}
+.settingsTypeBarButton {
+    cursor: pointer;
+    background: none;
+    padding: 10px 0 0 5px;
+    color: rgb(204, 127, 26);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.settingsTypeBarButton:hover > .barBorder {
+    width: 100%;
+}
+
+.barBorder {
+    margin: 10px 0 0 0;
+    background: rgb(204, 127, 26);
+    height: 4px;
+    width: 0px;
+    transition: width .3s ease-out;
+}
+
+.selected > .barBorder {
+    width: 100%;
+}
+
+.settingsMain {
+    flex-grow: 5;
+    display: flex;
+    justify-content: center;
+}
+
+.settingsForm {
+    max-width: 600px;
+    min-width: 300px;
+    color: rgb(204, 127, 26);
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.settingsForm > h1 {
+    margin: 0;
+}
+
+.settingsForm > h3 {
+    margin: 0;
+}
+
+.settingsForm > input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 3px 6px;
+    height: 29px;
+    border: 2px solid green;
+}
+
+.settingsForm > input[type=submit] {
+    cursor: pointer;
+    width: 200px;
+    margin: 10px auto;
+    height: 33px;
+    color: rgb(224, 214, 71);
+    background-color: green;
+    border: 1px solid green;
+    font-size: 1.4rem;
+}
+
+.settingsForm > input[type=submit]:hover {
+    opacity: .8;
+}
+
+
+@media screen and (max-width: 500px) {
+    .settingsContainer {
+        flex-flow: column nowrap;
+    }
+}

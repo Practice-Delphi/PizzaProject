@@ -13,7 +13,7 @@ class SignIn extends Component{
             <div >
               <Header></Header>
               <div className="signin"> 
-                <Link to="/sign-in-sell"  className = "linkButton">Sign In seller</Link>
+                <Link to="/sign-in-sell"  className = "linkButton">Sign In Seller</Link>
                 <Link to="/sign-in-cust" className = "linkButton">Sign In Customer</Link>
               </div>
             </div>
