@@ -43,19 +43,19 @@ class ProfileData extends Component {
         if (this.props.userData.user) {
             return (
                 <form className="settingsForm" onClick={e => e.preventDefault()}>
-                    
-                    <h1 className="settingsLabel">Name</h1>
+                    <h1>Change your profile</h1>
+                    <h2>Name</h2>
                     <input type="text" placeholder="First Name" onChange={(e) => { this.setState({ firstName: e.target.value }) }} />
                     <input type="text" placeholder="Last Name" onChange={(e) => { this.setState({ lastName: e.target.value }) }} />
 
-                    <h1 className="settingsLabel">Phone Namber</h1>
+                    <h2>Phone Namber</h2>
                     <input type="text" placeholder="Phone Number" onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }} />
 
-                    <h1 className="settingsLabel">Password</h1>
-                    <h3 className="settingsLabel">Current Password</h3>
+                    <h2>Password</h2>
+                    <h3>Current Password</h3>
                     <input type="text" placeholder="Current Password" onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }} />
-                    
-                    <h3 className="settingsLabel">New Password</h3>
+
+                    <h3>New Password</h3>
                     <input type="text" placeholder="Password" onChange={(e) => { this.setState({ password: e.target.value }) }} />
                     <input type="text" placeholder="Confirm Password" onChange={(e) => { this.setState({ confirmpassword: e.target.value }) }} />
                     <br></br>

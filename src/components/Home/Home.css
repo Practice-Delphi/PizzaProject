@@ -60,7 +60,7 @@
 
 .howit-grid {
   display: grid;
-  grid-column: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template: "seller driver customer";
 }
 
@@ -132,9 +132,9 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .home-howit {
+  .howit-grid {
     display: grid;
-    grid-column: 1fr;
+    grid-template-columns: 1fr;
     grid-template:  "seller" 
                     "driver" 
                     "customer";

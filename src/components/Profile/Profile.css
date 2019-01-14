@@ -24,7 +24,6 @@
     flex-flow: row nowrap;
     align-items:  center;
     cursor: pointer;
-
 }
 
 .castomNavLinkDiv2line:hover > .castomHover2line {

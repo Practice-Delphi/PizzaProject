@@ -30,7 +30,7 @@
     font-size: 2rem;
     border: none;
     border-bottom: 4px solid transparent;
-    padding: 0 25px;
+    padding: 0 20px;
     outline: none;
 }
 .headerRight > div {
@@ -41,7 +41,7 @@
     font-size: 2rem;
     border: none;
     border-bottom: 4px solid transparent;
-    padding: 0 25px;
+    padding: 0 20px;
     outline: none;
 }
 .castomNavLinkDiv{
@@ -64,28 +64,76 @@
     transition: width .3s ease-out, opacity .3s ease-out;
 }
 
-
-
 .headerLinkdiv {
-    padding: 25px;
+    padding: 0 25px;
 }
+
 .headerLink {
     text-decoration : none;
     color: rgb(204, 127, 26);
     
 }
 .headerLinkButtom{
+    cursor: pointer;
     text-decoration : none;
     color: rgb(204, 127, 26);
     background: none;
     outline: none;
     border: none;
     border-bottom: 4px solid transparent;
-    padding: 0 25px;
     font-size: 2rem;
+    padding: 0;
 }
-.headerLinkdiv :hover {
+.headerLinkdiv:hover {
     border-bottom: 4px solid rgb(224, 214, 71);
 }
 
+.burgerButton {
+    display: none;
+    cursor: pointer;
+    margin: auto 20px auto auto;
+}
 
+.burgerButton > img {
+    max-width: 32px;
+    max-height: 32px;
+}
+
+.burgerContainer {
+    display: none;
+    position: fixed;
+    right: 0px;
+    top: 85px;
+    background-color: rgb(95, 1, 75);
+    transform: translateX(350px);
+    transition: transform .3s ease-out;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+}
+
+.open {
+    transform: translateX(0);
+    width: 320px;
+}
+
+.burgerLink {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    margin: 10px 0px 0 35px;
+    border-bottom: 4px solid rgb(204, 127, 26);
+}
+
+
+@media screen and (max-width: 700px) {
+    .burgerButton {
+        display: block;
+    }
+    .headerRight {
+        display: none;
+    }
+    .burgerContainer {
+        display: inline;
+    }
+}
