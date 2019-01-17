@@ -35,7 +35,6 @@ class SignInForm extends Component {
 
     componentDidUpdate() {
         if (this.props.userData.user) {
-            console.log('replace');
             this.props.history.replace('/profile');
         }
     }

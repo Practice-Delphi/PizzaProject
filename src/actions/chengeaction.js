@@ -8,7 +8,7 @@ export const UPDATE_FETCH_FAILD = 'UPDATE_FETCH_FAILD';
 export const updateStart = () => ({
     type: UPDATE_FETCH_START
 }) ;
-export const updateSucces = (massage) => ({
+export const updateSuccess = (massage) => ({
     type: UPDATE_FETCH_SUCCESS,
     massage
 });
@@ -41,7 +41,7 @@ export const chengeUserData = (data) => (dispatch, getState) => {
             .then(res => {
                 console.log(res);
                 if (res.status === 204 || res.status === 200) {
-                    dispatch(updateSucces('updateSucces'));
+                    dispatch(updateSuccess('updateSuccess'));
                     console.log('WEAREinside');
                     dispatch(getUser(token));
                 } else if (res.status === 400) {

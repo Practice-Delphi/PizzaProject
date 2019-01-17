@@ -3,16 +3,19 @@
     flex-flow: row nowrap;
     justify-content: space-around;
     font-size: 160%;
-
     color: rgb(204, 127, 26);
     padding-top: 50px; 
 }
+
 .linkButton{
+    margin: 10px;
     padding: 15px;
     text-decoration: none;
     border: 3px solid rgb(204, 127, 26);
     color: rgb(204, 127, 26);
+    margin: 10px;
 }
+
 .linkButton:hover{
     background-color:  rgba(204, 127, 26, 0.452);
 }
@@ -24,6 +27,7 @@
     align-items: center;
     color: rgb(204, 127, 26);
 }
+
 .headerPlaseFiller{
     width: 100%;
     background-color: rgb(95, 1, 75);
@@ -105,5 +109,11 @@
     }
     to {
         transform:translateY(0px);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .signin {
+        flex-flow: column nowrap;
     }
 }

@@ -11,6 +11,7 @@ class SignUp extends Component{
               <Header></Header>
               <div className="signin"> 
                 <Link to="/sign-up-sell" className = "linkButton">Sign Up Seller</Link>
+                <Link to="/sign-up-driver" className = "linkButton">Sign Up Driver</Link>
                 <Link to="/sign-up-cust" className = "linkButton">Sign Up Customer</Link>
               </div>
             </div>

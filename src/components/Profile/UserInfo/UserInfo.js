@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import defaultUserPhoto from '../../../assets/default-user.png' 
-import style from "./Userinfo.css"
+import "./Userinfo.css"
 import phoneIco from "../../../assets/Phone.png"
 import mailIco from "../../../assets/simpline.png"
 

@@ -35,9 +35,11 @@ class App extends Component {
           <Route exact path="/home" component={Home} />
           <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/sign-in-cust" render={() => <SignInForm type="customer" />} />
+          <Route exact path="/sign-in-driver" render={() => <SignInForm type="driver" />} />
           <Route exact path="/sign-in-sell" render={() => <SignInForm type="seller" />} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/sign-up-cust" render={() => <SignUpForm type="customer" />} />
+          <Route exact path="/sign-up-driver" render={() => <SignUpForm type="driver" />} />
           <Route exact path="/sign-up-sell" render={() => <SignUpForm type="seller" />} />
           <Route exact path="/profile" component={Profile} />
         </Switch>

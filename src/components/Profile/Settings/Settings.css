@@ -18,10 +18,6 @@
     font-weight: bold;
 }
 
-.settingsTypeBarButton:hover > .barBorder {
-    width: 100%;
-}
-
 .barBorder {
     margin: 10px 0 0 0;
     background: rgb(204, 127, 26);
@@ -86,7 +82,8 @@
     }
 
     .settingsTypeBar {
-        width: 100%;
+        width: 300px;
+        margin: auto;
         border-right: none;
     }
 }
