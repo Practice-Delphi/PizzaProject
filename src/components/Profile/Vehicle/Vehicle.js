@@ -7,10 +7,6 @@ import { connect } from 'react-redux';
 
 import { getVehicle } from '../../../actions/vehiclesaction';
 
-import testimg from '../../../assets/testveh.png';
-import testimg2 from '../../../assets/testimg.jpg';
-import testimg3 from '../../../assets/testveh2.jpg';
-
 class Vehicle extends Component {
 
     constructor(props) {
@@ -45,12 +41,7 @@ class Vehicle extends Component {
                             <h3><label>Brand:</label> {veh.brand}</h3>
                             <h3><label>Color:</label> {veh.color}</h3>
                         </div>
-                        <img src={testimg} alt="image" />
-                        <img src={testimg2} alt="image" />
-                        <img src={testimg3} alt="image" />
-                        <img src={testimg} alt="image" />
-                        <img src={testimg2} alt="image" />
-                        <img src={testimg3} alt="image" />
+                        {/* render images here */}
                     </div>
                 </div>
             );
