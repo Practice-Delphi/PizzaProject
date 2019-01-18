@@ -129,6 +129,15 @@ export const getVehicle = (tok) => (dispatch, getState) => {
     const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
     if (token) {
         dispatch(vehicleStart());
+        // dispatch(vehicleSuccess({
+        //     id: "a99109f9-eca3-43b6-a70a-bf26d85f42c8",
+        //     number: "number",
+        //     model: "model",
+        //     brand: "brand",
+        //     color: "color",
+        //     pictures: [],
+        //     driverId: "9d930bc2-4444-4b47-89b4-63113c11414a",
+        // }));
         fetch(`${apiurl}/Account/Driver/Venicle/GetVenicle`, {
             method: 'GET',
             headers: new Headers({

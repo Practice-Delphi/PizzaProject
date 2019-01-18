@@ -101,7 +101,6 @@ export const refreshToken = (tok, action, ...actionparams) => (dispatch, getStat
                     }
                 })
                 .then(newtoken => {
-                    console.log(newtoken);
                     newtoken.role = token.role;
                     newtoken.id = token.id;
                     dispatch(tokenSuccess(newtoken));

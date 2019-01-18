@@ -9,6 +9,7 @@
     width: 200px;
     border-right: 2px solid rgb(204, 127, 26);
 }
+
 .settingsTypeBarButton {
     cursor: pointer;
     background: none;
@@ -58,6 +59,7 @@
     padding: 3px 6px;
     height: 29px;
     border: 2px solid green;
+    align-self: center;
 }
 
 .settingsForm > input[type=submit] {
@@ -75,10 +77,47 @@
     opacity: .8;
 }
 
+.settingsPhotoInput {
+    color: rgb(224, 214, 71);
+    opacity: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: green;
+    transition: opacity .3s ease-out;
+    margin: 10px auto;
+}
+
+.settingsPhotoInput > input[type=file] {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    z-index: 2;
+}
+
+.settingsPhotoInput:hover {
+    opacity: .8;
+}
+
+.settingsPhotoInput > label {
+    padding: 10px;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 500px) {
     .settingsContainer {
         flex-flow: column nowrap;
+    }
+
+    .settingsForm > input {
+        max-width: 280px;
     }
 
     .settingsTypeBar {

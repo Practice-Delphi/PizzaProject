@@ -15,14 +15,36 @@ class VehicleForm extends Component {
             model: null,
             brand: null,
             color: null,
+            vehphoto: [],
+            urls: [],
+        }
+    }
+
+    chooseVehPhoto(e) {
+        const files = e.target.files;
+        if (files) {
+            [...files].forEach(file => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    this.setState({ urls: [...this.state.urls, reader.result] });
+                };
+                reader.readAsDataURL(file);
+            });
+
+            this.setState({
+                vehphoto: [...this.state.vehphoto, ...files],
+            });
         }
     }
 
     submit() {
         const { loading } = this.props.vehData;
         const { uploadVehicle } = this.props;
+
+        const { model, brand, color, number, vehphoto } = this.state;
+
         if (!loading) {
-            uploadVehicle(this.state);
+            uploadVehicle({ model, number, brand, color }, vehphoto);
         }
     }
 
@@ -31,6 +53,13 @@ class VehicleForm extends Component {
             return (
                 <form className="settingsForm" onClick={e => e.preventDefault()}>
                     <h1>Change your vehicle</h1>
+
+                    <h2>Add photos</h2>
+                    <div className="settingsPhotoInput">
+                        <input type='file' accept='image/*' multiple onChange={(e) => { this.chooseVehPhoto(e) }} />
+                        <label>Add photos</label>
+                    </div>
+                    
                     <h2>Number</h2>
                     <input type="text" placeholder="Number" onChange={(e) => { this.setState({ number: e.target.value }) }} />
 
