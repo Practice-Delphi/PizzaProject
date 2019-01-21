@@ -41,7 +41,11 @@ export const chengeUserData = (data) => (dispatch, getState) => {
             .then(res => {
                 console.log(res);
                 if (res.status === 204 || res.status === 200) {
+<<<<<<< Updated upstream
                     dispatch(updateSuccess('updateSuccess'));
+=======
+                    dispatch(updateSuccess('updateSucces'));
+>>>>>>> Stashed changes
                     console.log('WEAREinside');
                     dispatch(getUser(token));
                 } else if (res.status === 400) {

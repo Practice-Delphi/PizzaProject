@@ -1,4 +1,5 @@
 import { apiurl } from '../appconfig';
+import { getPhoto } from './photoaction'
 
 export const USER_FETCH_START = 'USER_FETCH_START';
 export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
@@ -233,12 +234,13 @@ export const getUser = (tok) => (dispatch, getState) => {
                 }
             })
             .then(data => {
-                console.log(data);
                 if (data) {
                     data.role = token.role;
                     dispatch(userSuccess(data));
-                    if (data.profilePictureId) {
-                        // dispatch(getPhoto(data.profilePictureId, token));
+                    console.log(data.profileImageId);
+                    if (data.profileImageId) {
+                        
+                        dispatch(getPhoto(data.profileImageId, token));
                     }
                 }
             })
@@ -247,3 +249,4 @@ export const getUser = (tok) => (dispatch, getState) => {
         dispatch(logout());
     }
 }
+

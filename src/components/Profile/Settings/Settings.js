@@ -6,6 +6,7 @@ import RestaurantForm from './RestaurantForm';
 import VehicleForm from './VehicleForm';
 
 import { connect } from 'react-redux';
+import UploadPhoto from './UploadPhoto';
 
 class Settings extends Component {
 
@@ -51,6 +52,8 @@ class Settings extends Component {
             case 'AddRestaurant': return  <RestaurantForm />;
             case 'ChangeVehicle': return <VehicleForm />;
             default: return null;
+            case 'ProfileData' : return <ProfileData /> 
+            case 'UploadPhoto' : return <UploadPhoto /> 
         }
     }
     renderSettingsTypeBar() {
@@ -74,8 +77,10 @@ class Settings extends Component {
     }
     render() {
         return (
-            <div className="settingsContainer">
-                {this.renderSettingsTypeBar()}
+            <div className=" settingsContainer">
+                <div className="settingsTypeBar">
+                    {this.renderSettingsTypeBar()}
+                </div>
                 <div className="settingsMain">
                     {this.renderSettingsMain()}
                 </div>
