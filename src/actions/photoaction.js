@@ -1,27 +1,32 @@
 import { apiurl } from '../appconfig';
 import { checkAndGetToken, logout, getUser, refreshToken } from './authaction';
-import { updateStart, updateSuccess , updateFailed} from './chengeaction'
+import { updateStart, updateSuccess , updateFailed} from './chengeaction';
 
 export const PHOTO_FETCH_START = 'PHOTO_FETCH_START';
 export const PHOTO_FETCH_SUCCESS = 'PHOTO_FETCH_SUCCESS';
 export const PHOTO_FETCH_FAILED = 'PHOTO_FETCH_FAILED';
-
+export const FETCH_PHOTO_CLEAR = 'FETCH_PHOTO_CLEAR';
 
 export const photoStart = (id) =>({
     type : PHOTO_FETCH_START,
     id
-})
+});
 export const photoSuccess = (id, url) =>( {
     type : PHOTO_FETCH_SUCCESS,
     id,
     url
-})
+});
+
 export const photoFailed = (id , error) =>({
     type : PHOTO_FETCH_FAILED,
     id,
     error
-})
+});
 
+export const photoClear = (id) => ({
+    type: FETCH_PHOTO_CLEAR,
+    id
+});
 
 export const getPhoto = (id, tok) => (dispatch, getState) =>{
     if (id && !getState().photosData[id]){

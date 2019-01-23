@@ -9,6 +9,8 @@ import { tokenData, userData, registerData } from "./authreducer";
 import { chengeddata } from './chengereducer';
 import { vehData } from './vehiclereducer';
 import { photosData } from './photoreduser';
+import { restaurantsData } from './restaurantreducer';
+
 // Here combine custom reducers
 export default combineReducers({
     testData,
@@ -18,5 +20,6 @@ export default combineReducers({
     registerData,
     chengeddata,
     vehData,
-    photosData
+    photosData,
+    restaurantsData,
 });

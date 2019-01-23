@@ -10,37 +10,33 @@ class RestaurantForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: null,
-            lastName: null,
-            phoneNumber: null,
-            password: null,
-            confirmpassword: null,
-            currentPassword: null,
-
+            name: '',
+            description: '',
+            location: {
+                latitude: 0,
+                longitude: 0,
+                set: (lat, lon) => {
+                    this.latitude = lat;
+                    this.longitude = lon;
+                }
+            },
+            logo: null,
+            logourl: null,
+            images: [],
+            imagesurls: []
         }
     }
+
     confirmChange() {
-        if (this.state.firstName) {
-            this.props.chengeUserData({
-                firstName: this.state.firstName,
-            })
-        }
-        if (this.state.lastName) {
-            this.props.chengeUserData({
-                lastName: this.state.lastName,
-            })
-        }
-        if (this.state.phoneNumber) {
-            this.props.chengeUserData({
-                phoneNumber: this.state.phoneNumber,
-            })
-        }
+        
     }
 
     render() {
         if (this.props.userData.user) {
             return (
                 <form className="settingsForm" onClick={e => e.preventDefault()}>
+                    <h1>Create your restaurant</h1>
+                    <h2>Add information</h2>
 
                     <input type = "submit" onClick={this.confirmChange.bind(this)} value="Apply"/>
                 </form>

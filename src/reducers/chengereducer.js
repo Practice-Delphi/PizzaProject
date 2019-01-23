@@ -16,6 +16,8 @@ const chengeddata = (state = initState, action ) => {
         case UPDATE_FETCH_START : return Object.assign({}, state, { loading: true });
         case UPDATE_FETCH_SUCCESS : return Object.assign({}, state, { loading: false, success: action.success });
         case UPDATE_FETCH_FAILD : return Object.assign({}, state, { loading: false, error: action.error });
+        case CLEAR_ERRORS: return Object.assign({}, state, { error: null });
+        case CLEAR_ALL: return Object.assign({}, initState);
         default: return state;
     }
 }

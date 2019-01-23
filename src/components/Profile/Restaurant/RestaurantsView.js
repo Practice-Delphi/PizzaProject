@@ -5,12 +5,19 @@ import "./Restaurant.css";
 
 import { connect } from 'react-redux';
 
+import { getRestaurants } from '../../../actions/restaurantaction';
+
 
 class RestaurantView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+    }
 
+    componentDidMount() {
+        const { restaurants } = this.props.restaurantsData;
+        const { getRestaurants } = this.props;
+        if (restaurants && restaurants.length === 0) {
+            getRestaurants();
         }
     }
     
@@ -25,11 +32,16 @@ class RestaurantView extends Component {
 }
 
 RestaurantView.propTypes = {
-
+    restaurantsData: PropTypes.object,
+    getRestaurants: PropTypes.func,
 }
 
 const mapStateToProps = state => ({
-
+    restaurantsData: state.restaurantsData
 });
 
-export default connect(mapStateToProps)(RestaurantView);
+const mapDispatchtoProps = dispatch => ({
+    getRestaurants: () => { dispatch(getRestaurants()) },
+});
+
+export default connect(mapStateToProps, mapDispatchtoProps)(RestaurantView);
