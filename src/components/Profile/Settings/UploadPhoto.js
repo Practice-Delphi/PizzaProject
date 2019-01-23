@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+
+import defaultphoto from '../../../assets/default-user.png';
+
 import { connect } from 'react-redux';
-import { uploadProfilePhoto } from '../../../actions/photoaction'
+import { uploadProfilePhoto } from '../../../actions/photoaction';
 
 class UploadPhoto extends Component {
 
-    constructor (props){
+    constructor(props) {
         super(props);
         this.state = {
             newphoto: null,
@@ -27,16 +30,27 @@ class UploadPhoto extends Component {
             });
         }
     }
-    chooseNewPhoto (){
+    chooseNewPhoto() {
         this.props.uploadProfilePhoto(this.state.newphoto);
         console.log('chooseNewPhoto');
     }
-    render(){
-        return(
-            <div>
-                <input type="file" accept='image/*' onChange = {(e) => {this.pickNewPhoto(e)}} />
-                <button onClick= {this.chooseNewPhoto.bind(this)}>Submit</button>
-            </div>
+    renderPreview() {
+        const { newphotourl } = this.state;
+        if (newphotourl) {
+            return <img src={newphotourl} alt='photo' />;
+        }
+        return <img src={defaultphoto} alt='photo' />;
+    }
+    render() {
+        return (
+            <form className="settingsForm" onSubmit={(e) => { e.preventDefault() }}>
+                <div className="settingProfilePhotoInput">
+                    {this.renderPreview()}
+                    <input type="file" accept='image/*' onChange={(e) => { this.pickNewPhoto(e) }} />
+                </div>
+
+                <input type="submit" onClick={this.chooseNewPhoto.bind(this)} value="Submit" />
+            </form>
         )
     }
 }
@@ -55,4 +69,4 @@ const mapStateToProps = state => ({
 const mapDispatchtoProps = dispatch => ({
     uploadProfilePhoto: (file) => { dispatch(uploadProfilePhoto(file)) },
 })
-export default connect(mapStateToProps,mapDispatchtoProps) (UploadPhoto);
+export default connect(mapStateToProps, mapDispatchtoProps)(UploadPhoto);

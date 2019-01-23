@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './Settings.css';
+import defaultphoto from '../../../assets/default-vehicle.png';
 
 import { connect } from 'react-redux';
 import { uploadVehicle } from "../../../actions/vehiclesaction";
@@ -17,6 +18,7 @@ class VehicleForm extends Component {
             color: null,
             vehphoto: [],
             urls: [],
+            slide: 0,
         }
     }
 
@@ -36,7 +38,7 @@ class VehicleForm extends Component {
             });
         }
     }
-
+    
     submit() {
         const { loading } = this.props.vehData;
         const { uploadVehicle } = this.props;
@@ -48,18 +50,57 @@ class VehicleForm extends Component {
         }
     }
 
+    changeSlide(n) {
+        const { urls } = this.state;
+        if (Array.isArray(urls)) {
+            let slide = this.state.slide;
+            slide += n;
+            if (slide > urls.length - 1) {
+                slide = 0;
+            } else if (slide < 0) {
+                slide = (urls.length === 0) ? 0 : urls.length - 1;
+            }
+            this.setState({ slide, transform: 0 });
+        }
+    }
+
+    renderPreview() {
+        const { urls, slide } = this.state;
+        if (Array.isArray(urls)) {
+            if (urls.length === 0) {
+                return (
+                    <div className="settingsPhotoPreview">
+                        <img src={defaultphoto} alt='photo' />
+                    </div>
+                )
+            }
+            return urls.map((url, key) => {
+                return (
+                    <div key={key} 
+                    className={`settingsPhotoPreview slider ${(key === slide) ? 'block' : 'none'}`}
+                    onClick={() => { this.changeSlide(1) }}>
+                        <img src={url} alt='photo' />
+                    </div>
+                );
+            });
+        }
+    }
+
     render() {
         if (this.props.userData.user) {
             return (
-                <form className="settingsForm" onClick={e => e.preventDefault()}>
+                <form className="settingsForm" onSubmit={e => e.preventDefault()}>
                     <h1>Change your vehicle</h1>
-
+                    
                     <h2>Add photos</h2>
+                    <div>
+                        {this.renderPreview()}
+                    </div>
                     <div className="settingsPhotoInput">
                         <input type='file' accept='image/*' multiple onChange={(e) => { this.chooseVehPhoto(e) }} />
                         <label>Add photos</label>
                     </div>
-                    
+
                     <h2>Number</h2>
                     <input type="text" placeholder="Number" onChange={(e) => { this.setState({ number: e.target.value }) }} />
 

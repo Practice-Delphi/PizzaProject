@@ -48,14 +48,13 @@ class Settings extends Component {
     renderSettingsMain() {
         switch (this.state.show) {
             case 'ProfileData': return <ProfileData />;
-            case 'UploadPhoto': return <div>UploadPhoto</div>;
             case 'AddRestaurant': return  <RestaurantForm />;
             case 'ChangeVehicle': return <VehicleForm />;
-            default: return null;
-            case 'ProfileData' : return <ProfileData /> 
             case 'UploadPhoto' : return <UploadPhoto /> 
+            default: return null;
         }
     }
+    
     renderSettingsTypeBar() {
         return (
             <div className="settingsTypeBar">

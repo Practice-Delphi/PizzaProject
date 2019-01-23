@@ -28,7 +28,7 @@ export const getPhoto = (id, tok) => (dispatch, getState) =>{
         const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
         if (token) {
             dispatch(photoStart(id));
-            fetch (`${apiurl}/profile/GetProfilePicture`, {
+            fetch (`${apiurl}/GetImage/${id}`, {
                 method : 'GET',
                 headers: new Headers({
                     'Authorization': `Bearer ${token.authToken}`,
@@ -48,7 +48,6 @@ export const getPhoto = (id, tok) => (dispatch, getState) =>{
                 }
             })
             .then(blob => {
-                console.log(blob);
                 if (blob) {
                     const url = URL.createObjectURL(blob);
                     dispatch(photoSuccess(id, url));
@@ -58,7 +57,6 @@ export const getPhoto = (id, tok) => (dispatch, getState) =>{
                 }
             })
             .catch(error => dispatch(photoFailed(id, error.message)));
-
         } else {
             dispatch(logout());
         }
@@ -69,7 +67,6 @@ export const uploadProfilePhoto = (file, tok) => (dispatch, getState) => {
     const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
     if (file){
         if (token) {
-            
             dispatch(updateStart());
             const data = new FormData();
             data.append('files', file);
@@ -92,7 +89,6 @@ export const uploadProfilePhoto = (file, tok) => (dispatch, getState) => {
                     }
                 })
                 .then(data => {
-                    console.log(data);
                     dispatch(updateSuccess('Photo is updated'))
                     dispatch(getUser());
                 })

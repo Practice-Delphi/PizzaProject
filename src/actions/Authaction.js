@@ -149,7 +149,6 @@ export const registerUser = (role, regdata) => (dispatch, getState) => {
             }
         })
         .then(data => {
-            console.log(data);
             if (Array.isArray(data[Object.keys(data)[0]])) {
                 dispatch(registerFailed(data[Object.keys(data)[0]][0]));
             } else {

@@ -3,7 +3,7 @@ import { apiurl } from '../appconfig';
 import { checkAndGetToken, logout, refreshToken } from './authaction';
 
 import { updateStart, updateSuccess, updateFailed } from './chengeaction';
-// import { getPhoto, photoClear } from './photoaction';
+import { getPhoto } from './photoaction';
 
 export const VEHICLE_FETCH_START = 'VEHICLE_FETCH_START';
 export const VEHICLE_FETCH_SUCCESS = 'VEHICLE_FETCH_SUCCESS';
@@ -81,47 +81,46 @@ export const uploadVehicle = (data, file) => (dispatch, getState) => {
         }
     } else if (file) {
         dispatch(updateStart());
-        // dispatch(uploadVehPhoto(file, token));
+        dispatch(uploadVehPhoto(file, token));
     } else {
         dispatch(updateFailed('No data and photo'));
     }
 }
 
 // TODO: actionCreator upload Vehicle Photo
-// export const uploadVehPhoto = (files, token) => (dispatch, getState) => {
-//     if (files) {
-//         if (token) {
-//             const data = new FormData();
-//             files.forEach(file => {
-//                 data.append('files', file);
-//             })
-            
-//             fetch(`${apiurl}/api/vehicles/images`, {
-//                 method: 'POST',
-//                 headers: new Headers({
-//                     'Authorization': `Bearer ${token.authToken}`,
-//                 }),
-//                 body: data
-//             })
-//                 .then(res => {
-//                     if (res.status === 200 || res.status === 204 || res.status === 201 || res.status === 202) {
-//                         dispatch(updatesuccess('Vehicle is update'));
-//                         dispatch(getVehicle(token));
-//                     } else if (res.status === 401) {
-//                         dispatch(refreshToken(token, uploadVehPhoto, file, data));
-//                     } else {
-//                         throw new Error(res.statusText);
-//                     }
-//                 })
-//                 .catch(error => {
-//                     dispatch(updatefailed(error.message));
-//                     dispatch(vehicleFailed(error.message));
-//                 });
-//         } else {
-//             dispatch(logout());
-//         }
-//     }
-// }
+export const uploadVehPhoto = (files, token) => (dispatch, getState) => {
+    if (files) {
+        if (token) {
+            const data = new FormData();
+            files.forEach(file => {
+                data.append('files', file);
+            })
+            fetch(`${apiurl}/Account/Driver/Venicle/AddVenicleImage`, {
+                method: 'POST',
+                headers: new Headers({
+                    'Authorization': `Bearer ${token.authToken}`,
+                }),
+                body: data
+            })
+                .then(res => {
+                    if (res.status === 200 || res.status === 204 || res.status === 201 || res.status === 202) {
+                        dispatch(updateSuccess('Vehicle is update'));
+                        dispatch(getVehicle(token));
+                    } else if (res.status === 401) {
+                        dispatch(refreshToken(token, uploadVehPhoto, files, data));
+                    } else {
+                        throw new Error(res.statusText);
+                    }
+                })
+                .catch(error => {
+                    dispatch(updateFailed(error.message));
+                    dispatch(vehicleFailed(error.message));
+                });
+        } else {
+            dispatch(logout());
+        }
+    }
+}
 
 
 // TODO: actionCreator get Document info 
@@ -155,12 +154,11 @@ export const getVehicle = (tok) => (dispatch, getState) => {
             })
             .then(data => {
                 dispatch(vehicleSuccess(data));
-                console.log(data);
-                // if (data.pictures && Array.isArray(data.pictures)) {
-                //     data.pictures.forEach(id => {
-                //         dispatch(getPhoto(id, token));
-                //     });
-                // }
+                if (data.pictures && Array.isArray(data.pictures)) {
+                    data.pictures.forEach(id => {
+                        dispatch(getPhoto(id, token));
+                    });
+                }
             })
             .catch(error => dispatch(vehicleFailed(error.message)));
     } else {

@@ -1,5 +1,5 @@
 .settingsContainer {
-    max-width: 600px;
+    max-width: 900px;
     margin: 20px auto;
     display: flex;
     flex-flow: row wrap;
@@ -109,6 +109,89 @@
     padding: 10px;
     font-size: 1.4rem;
     font-weight: bold;
+}
+
+.settingsPhotoPreview {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+}
+
+.slider {
+    cursor: pointer;
+    transition: opacity .3s ease-out;
+    animation: slideranim .2s ease-out;
+}
+
+.slider:hover {
+    opacity: .8;
+}
+
+.settingsPhotoPreview > img {
+    position: absolute;
+    margin: auto;
+    min-height: 200px;
+    min-width: 300px;
+    width: 300px;
+    height: auto;
+}
+
+.block {
+    display: block;
+}
+  
+.none {
+    display: none;
+}
+
+.settingProfilePhotoInput {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+    transition: opacity .3s ease-out;
+}
+
+.settingProfilePhotoInput:hover {
+    opacity: .8;
+}
+
+.settingProfilePhotoInput > img {
+    position: absolute;
+    margin: auto;
+    min-height: 300px;
+    min-width: 300px;
+    width: 300px;
+    height: auto;
+}
+
+.settingProfilePhotoInput > input[type=file] {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    z-index: 2;
+}
+
+@keyframes slideranim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: 500px) {
