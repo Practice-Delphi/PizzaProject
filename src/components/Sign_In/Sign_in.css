@@ -25,12 +25,13 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    color: rgb(204, 127, 26);
+    color: #3E78B2;
 }
 
 .headerPlaseFiller{
     width: 100%;
-    background-color: rgb(95, 1, 75);
+    background-color:  #1D1D20;
+    background-color: linear-gradient(to bottom,  #3D3D40 0%, #2D2D30 70%, #1D1D20 100%);
     height: 160px;
     position: absolute;
     top: 0px;
@@ -60,10 +61,7 @@
     padding: 3px 6px;
     width: 96%;
     height: 29px;
-    border: 2px solid green;
-}
-.signInInput:hover{
-    border: 2px solid green;
+    border: 2px solid #3D3D40;
 }
 
 .signInInputSubmit {
@@ -71,10 +69,11 @@
     width: 100%;
     margin: 10px 0;
     height: 33px;
-    color: rgb(224, 214, 71);
-    background-color: green;
-    border: 1px solid green;
+    color: #3E78B2;
+    background-color: #3D3D40;
+    background-image: linear-gradient(to bottom,  #3D3D40 0%, #2D2D30 70%, #1D1D20 100%);
     font-size: 1.4rem;
+    transition: opacity .3s ease-out;
 }
 
 .signInInputSubmit:hover {

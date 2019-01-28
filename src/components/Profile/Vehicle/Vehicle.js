@@ -5,6 +5,9 @@ import "./Vehicle.css";
 
 import defaultphoto from '../../../assets/default-vehicle.png';
 
+import Loading from '../../Loading/Loading';
+import Alert from '../../Alert/Alert';
+
 import { connect } from 'react-redux';
 
 import { getVehicle } from '../../../actions/vehiclesaction';
@@ -45,20 +48,20 @@ class Vehicle extends Component {
             if (url) {
                 return <img src={url} alt='photo' />;
             }
-            // if (loading) {
-            //     return <Loading />
-            // }
-            // if (error) {
-            //     return <Alert local={true} message='Photo don`t load' click={() => { getPhoto(id) }} />
-            // }
+            if (loading) {
+                return <Loading />
+            }
+            if (error) {
+                return <Alert message='Photo don`t load' click={() => { getPhoto(id) }} />
+            }
             return <img src={defaultphoto} alt='photo' />;
         }
         return <img src={defaultphoto} alt='photo' />;
     }
 
     renderPictures(pictures) {
-        return pictures.map((id) => {
-            return <div key={id} className="vehicleImage">
+        return pictures.map((id, key) => {
+            return <div key={id} className={`vehicleImage`}>
                 {this.renderPhoto(id)}
             </div>
         })
@@ -66,18 +69,19 @@ class Vehicle extends Component {
 
     render() {
         const { veh, error, loading } = this.props.vehData;
+        const { getVehicle } = this.props;
         if (veh) {
             const { pictures } = veh;
             return (
                 <div className="vehicleContainer">
+                    <div className="vehicleInfo">
+                        <h1>Your vehicle info</h1>
+                        <h3><label>Number:</label> {veh.number}</h3>
+                        <h3><label>Model:</label> {veh.model}</h3>
+                        <h3><label>Brand:</label> {veh.brand}</h3>
+                        <h3><label>Color:</label> {veh.color}</h3>
+                    </div>
                     <div className="vehicleImages">
-                        <div className="vehicleInfo">
-                            <h1>Your vehicle info</h1>
-                            <h3><label>Number:</label> {veh.number}</h3>
-                            <h3><label>Model:</label> {veh.model}</h3>
-                            <h3><label>Brand:</label> {veh.brand}</h3>
-                            <h3><label>Color:</label> {veh.color}</h3>
-                        </div>
                         {this.renderPictures(pictures)}
                     </div>
                 </div>
@@ -86,14 +90,14 @@ class Vehicle extends Component {
         if (error) {
             return (
                 <div className="vehicleContainer">
-                    {error}
+                    <Alert message="Vehicle dont load" click={() => { getVehicle() }}/>
                 </div>
             )
         }
         if (loading) {
             return (
                 <div className="vehicleContainer">
-                    Here must be loader (I think)
+                    <Loading />
                 </div>
             )
         }

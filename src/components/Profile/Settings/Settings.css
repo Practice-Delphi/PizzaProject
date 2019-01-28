@@ -54,6 +54,7 @@
 }
 
 .settingsForm > input {
+    align-self: center;
     width: 100%;
     margin: 10px 0;
     padding: 3px 6px;
@@ -75,6 +76,15 @@
 
 .settingsForm > input[type=submit]:hover {
     opacity: .8;
+}
+
+.settingsForm > textarea {
+    align-self: center;
+    height: 100px;
+    width: 100%;
+    margin: 10px 0;
+    padding: 3px 6px;
+    border: 2px solid green;
 }
 
 .settingsPhotoInput {

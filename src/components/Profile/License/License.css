@@ -1,0 +1,34 @@
+.licenseContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    margin: 20px;
+}
+
+.licenseContainer > h1 {
+    align-self: center;
+    margin: 10px 0;
+    color: rgb(204, 127, 26);
+}
+
+.licenseImages {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.licenseImage {
+    width: 100%;
+    max-width: 500px;
+    min-width: 300px;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.licenseImage > img {
+    width: 100%;
+    height: auto;
+}

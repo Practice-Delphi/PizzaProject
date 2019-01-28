@@ -96,7 +96,6 @@ SignInForm.propTypes = {
     type: PropTypes.string.isRequired,
     login: PropTypes.func,
     history: PropTypes.object,
-    userData: PropTypes.object,
 }
 
 const mapStateToProps = state => ({

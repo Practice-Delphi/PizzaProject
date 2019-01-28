@@ -180,7 +180,6 @@ export const loginUser = (logdata, role) => (dispatch, getState) => {
             }
         })
         .then(token => {
-            console.log(token);
             if (token.authToken) {
                 token.role = role;
                 dispatch(tokenSuccess(token));
@@ -236,9 +235,7 @@ export const getUser = (tok) => (dispatch, getState) => {
                 if (data) {
                     data.role = token.role;
                     dispatch(userSuccess(data));
-                    console.log(data.profileImageId);
                     if (data.profileImageId) {
-                        
                         dispatch(getPhoto(data.profileImageId, token));
                     }
                 }

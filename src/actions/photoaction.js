@@ -1,24 +1,24 @@
 import { apiurl } from '../appconfig';
 import { checkAndGetToken, logout, getUser, refreshToken } from './authaction';
-import { updateStart, updateSuccess , updateFailed} from './chengeaction';
+import { updateStart, updateSuccess, updateFailed } from './chengeaction';
 
 export const PHOTO_FETCH_START = 'PHOTO_FETCH_START';
 export const PHOTO_FETCH_SUCCESS = 'PHOTO_FETCH_SUCCESS';
 export const PHOTO_FETCH_FAILED = 'PHOTO_FETCH_FAILED';
 export const FETCH_PHOTO_CLEAR = 'FETCH_PHOTO_CLEAR';
 
-export const photoStart = (id) =>({
-    type : PHOTO_FETCH_START,
+export const photoStart = (id) => ({
+    type: PHOTO_FETCH_START,
     id
 });
-export const photoSuccess = (id, url) =>( {
-    type : PHOTO_FETCH_SUCCESS,
+export const photoSuccess = (id, url) => ({
+    type: PHOTO_FETCH_SUCCESS,
     id,
     url
 });
 
-export const photoFailed = (id , error) =>({
-    type : PHOTO_FETCH_FAILED,
+export const photoFailed = (id, error) => ({
+    type: PHOTO_FETCH_FAILED,
     id,
     error
 });
@@ -28,8 +28,9 @@ export const photoClear = (id) => ({
     id
 });
 
-export const getPhoto = (id, tok) => (dispatch, getState) =>{
-    if (id && !getState().photosData[id]){
+export const getPhoto = (id, tok) => (dispatch, getState) => {
+    const { photosData } = getState();
+    if (id && (!photosData[id] || photosData[id].error)) {
         const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
         if (token) {
             dispatch(photoStart(id));
@@ -70,21 +71,22 @@ export const getPhoto = (id, tok) => (dispatch, getState) =>{
 
 export const uploadProfilePhoto = (file, tok) => (dispatch, getState) => {
     const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
-    if (file){
+    if (file) {
         if (token) {
             dispatch(updateStart());
             const data = new FormData();
-            data.append('files', file);
+            data.append('file', file);
             dispatch(photoStart());
-            return fetch(`${apiurl}/profile/SetProfilePicture`,{
-                method : 'POST',
-                headers : new Headers({
+            return fetch(`${apiurl}/profile/SetProfilePicture`, {
+                method: 'POST',
+                headers: new Headers({
                     'Authorization': `Bearer ${token.authToken}`,
-                    
-                    }),
-                body : data
+
+                }),
+                body: data
             })
-                .then(res => {console.log(res);
+                .then(res => {
+                    console.log(res);
                     if (res.status === 200 || res.status === 201 || res.status === 204) {
                         return res.json();
                     } else if (res.status === 401) {
@@ -101,7 +103,7 @@ export const uploadProfilePhoto = (file, tok) => (dispatch, getState) => {
                     dispatch(updateFailed(error.message));
                     dispatch(photoFailed(error.message));
                 });
-        }else {
+        } else {
             dispatch(logout());
         }
     } else {

@@ -1,14 +1,13 @@
 .header {
     width: 100%;
     height: 85px;
-    background-color: rgb(95, 1, 75);
-    background: linear-gradient(to bottom, rgba(140,1,115,1) 0%, rgba(122,1,101,1) 47%, rgba(95,1,75,1) 87%, rgba(95,1,75,1) 100%);
+    background-color: #1D1D20;
+    background: linear-gradient(to bottom,  #3D3D40 0%, #2D2D30 70%, #1D1D20 100%);
     display: flex;
     flex-flow: row wrap;
-    color: rgb(204, 127, 26);
+    color: #3E78B2;
     font-size: 220%;
     justify-content: space-around;
-    border-bottom: 1px solid  rgba(224, 214, 71, 0.26);
     box-shadow: rgba(0,0,0,.2) 0 5px 3px 5px;
     top: 0;
     position: sticky;
@@ -53,9 +52,9 @@
     width: 100%;
     opacity: 1;
 }
-.castomHover{
+.castomHover {
     position: absolute;
-    background-color: rgb(224, 214, 71);
+    background-color: #3E78B2;
     width: 0%;
     opacity: 0;
     height: 5px;
@@ -71,13 +70,13 @@
 
 .headerLink {
     text-decoration : none;
-    color: rgb(204, 127, 26);
+    color: #3E78B2;
     
 }
 .headerLinkButtom{
     cursor: pointer;
     text-decoration : none;
-    color: rgb(204, 127, 26);
+    color: #3E78B2;
     background: none;
     outline: none;
     border: none;
@@ -86,7 +85,7 @@
     padding: 0;
 }
 .headerLinkdiv:hover {
-    border-bottom: 4px solid rgb(224, 214, 71);
+    border-bottom: 4px solid #3E78B2;
 }
 
 .burgerButton {
@@ -105,8 +104,8 @@
     position: fixed;
     right: 0px;
     top: 85px;
-    background-color: rgb(95, 1, 75);
-    background: linear-gradient(to bottom, rgba(140,1,115,1) 0%, rgba(122,1,101,1) 47%, rgba(95,1,75,1) 87%, rgba(95,1,75,1) 100%);
+    background-color: #1D1D20;
+    background: linear-gradient(to bottom,  #3D3D40 0%, #2D2D30 70%, #1D1D20 100%);
     transform: translateX(350px);
     transition: transform .3s ease-out;
     z-index: 10;
@@ -125,9 +124,8 @@
     align-items: center;
     justify-content: stretch;
     margin: 10px 0px 0 35px;
-    border-bottom: 4px solid rgb(204, 127, 26);
+    border-bottom: 4px solid #3E78B2;
 }
-
 
 @media screen and (max-width: 700px) {
     .burgerButton {

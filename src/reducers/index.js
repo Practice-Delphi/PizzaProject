@@ -10,6 +10,7 @@ import { chengeddata } from './chengereducer';
 import { vehData } from './vehiclereducer';
 import { photosData } from './photoreduser';
 import { restaurantsData } from './restaurantreducer';
+import { docData } from './docreducer';
 
 // Here combine custom reducers
 export default combineReducers({
@@ -22,4 +23,5 @@ export default combineReducers({
     vehData,
     photosData,
     restaurantsData,
+    docData
 });

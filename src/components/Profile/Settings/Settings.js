@@ -4,6 +4,7 @@ import './Settings.css';
 import ProfileData from './ProfileData';
 import RestaurantForm from './RestaurantForm';
 import VehicleForm from './VehicleForm';
+import LicenseForm from './LicenseForm';
 
 import { connect } from 'react-redux';
 import UploadPhoto from './UploadPhoto';
@@ -31,13 +32,13 @@ class Settings extends Component {
         return null;
     }
 
-    renderVehicleButton() {
+    renderDriverButton(name, type) {
         const { user } = this.props.userData;
         if (user && user.role === 'driver') {
             return (
-                <div className={`settingsTypeBarButton ${(this.state.show === 'ChangeVehicle') ? 'selected' : ''}`}
-                    onClick={() => { this.setState({ show: 'ChangeVehicle' }) }}>
-                        ChangeVehicle
+                <div className={`settingsTypeBarButton ${(this.state.show === type) ? 'selected' : ''}`}
+                    onClick={() => { this.setState({ show: type }) }}>
+                        {name}
                     <div className="barBorder"></div>
                 </div>
             )
@@ -50,7 +51,8 @@ class Settings extends Component {
             case 'ProfileData': return <ProfileData />;
             case 'AddRestaurant': return  <RestaurantForm />;
             case 'ChangeVehicle': return <VehicleForm />;
-            case 'UploadPhoto' : return <UploadPhoto /> 
+            case 'UploadPhoto' : return <UploadPhoto />;
+            case 'ChangeLicense': return <LicenseForm />;
             default: return null;
         }
     }
@@ -70,7 +72,8 @@ class Settings extends Component {
                     <div className="barBorder"></div>
                 </div>
                 {this.renderAddRestaurantButton()}
-                {this.renderVehicleButton()}
+                {this.renderDriverButton('ChangeVehicle', 'ChangeVehicle')}
+                {this.renderDriverButton('ChangeLicense', 'ChangeLicense')}
             </div>
         )
     }

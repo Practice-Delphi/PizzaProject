@@ -37,9 +37,9 @@ class UploadPhoto extends Component {
     renderPreview() {
         const { newphotourl } = this.state;
         if (newphotourl) {
-            return <img src={newphotourl} alt='photo' />;
+            return <img src={newphotourl} alt='preview' />;
         }
-        return <img src={defaultphoto} alt='photo' />;
+        return <img src={defaultphoto} alt='preview' />;
     }
     render() {
         return (

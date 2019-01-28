@@ -11,10 +11,6 @@
     flex-flow: column nowrap;
     align-items: center;
 }
-.userProfilePhoto{
-    width: 250px;
-    height: 250px;
-}
 .Userinfospan{
     color: green;
 }
@@ -46,4 +42,5 @@
     min-width: 300px;
     width: 300px;
     height: auto;
+    z-index: -1;
 }

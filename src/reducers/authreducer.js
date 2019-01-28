@@ -21,7 +21,7 @@ export const registerInitState = {
 
 const registerData = (state = registerInitState, action) => {
     switch (action.type) {
-        case USER_REGISTER_START: return Object.assign({}, state, { loading: true });
+        case USER_REGISTER_START: return Object.assign({}, state, { loading: true, success: null, error: null });
         case USER_REGISTER_SUCCESS: return Object.assign({}, state, { loading: false, success: action.message });
         case USER_REGISTER_FAILED: return Object.assign({}, state, { loading: false, error: action.error });
         case CLEAR_ERRORS: return Object.assign({}, registerInitState);
@@ -38,7 +38,7 @@ export const initUserState = {
 
 const userData = (state = initUserState, action) => {
     switch (action.type) {
-        case USER_FETCH_START: return Object.assign({}, state, { loading: true });
+        case USER_FETCH_START: return Object.assign({}, state, { loading: true, success: null, error: null });
         case USER_FETCH_SUCCESS: return Object.assign({}, state, { user: action.user, loading: false });
         case USER_FETCH_FAILED: return Object.assign({}, state, { error: action.error, loading: false });
         case CLEAR_ERRORS: return Object.assign({}, state, { error: null });

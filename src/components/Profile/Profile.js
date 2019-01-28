@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import UserInfo from './UserInfo/UserInfo'
 import Settings from './Settings/Settings'
 import Vehicle from './Vehicle/Vehicle';
+import License from './License/License';
 
 import uparrow from '../../assets/uparrow.svg';
 
@@ -77,6 +78,7 @@ class Profile extends Component {
                 <div className="ProfToolBar" >
                     <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
                     <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Vehicle' }) }}>Vehicle<div className="castomHover2line"></div></div>
+                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'License' }) }}>License<div className="castomHover2line"></div></div>
                     <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
                 </div>
             )
@@ -103,6 +105,7 @@ class Profile extends Component {
             case 'Settings': return <Settings />;
             case 'Vehicle': return <Vehicle />;
             case 'Restaurants': return <RestaurantsView />;
+            case 'License': return <License />;
             default: return null;
         }
     }

@@ -121,7 +121,7 @@ export const setLogo = (logo, tok) => (dispatch, getState) => {
         const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
         if (token) {
             const data = new FormData();
-            data.append('files', logo);
+            data.append('file', logo);
             dispatch(logoStart());
             fetch(`${apiurl}/Restaurant/SetLogo`, {
                 method: 'POST',
@@ -147,7 +147,7 @@ export const setLogo = (logo, tok) => (dispatch, getState) => {
 }
 
 export const addImages = (photos, tok) => (dispatch, getState) => {
-    if (logo) {
+    if (photos) {
         const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
         if (token) {
             const data = new FormData();
@@ -166,7 +166,7 @@ export const addImages = (photos, tok) => (dispatch, getState) => {
                     if (res.status === 200 || res.status === 204 || res.status === 201 || res.status === 202) {
                         dispatch(photosSuccess("Photos were upload"));
                     } else if (res.status === 401) {
-                        dispatch(refreshToken(token, setLogo, logo));
+                        dispatch(refreshToken(token, addImages, photos));
                     } else {
                         throw new Error(res.statusText);
                     }

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import './Home.css';
 
 import Header from '../Header/Header'
-
+// import Loading from '../Loading/Loading';
 
 class Home extends Component {
     render() {
