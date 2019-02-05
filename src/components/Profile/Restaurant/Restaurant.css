@@ -157,19 +157,13 @@
     border: 2px solid #3D3D40;
     max-width: 300px;
 }
-.addimage {
-    width: 300px;
-    height: 300px;
-}
-
 .addimage > img {
-    width: 64px;
-    height: 54px;
-    margin: auto;
+    width: 200px;
+    height: 200px;
 }
 
 .imageInput {
-    opacity: .7;
+    opacity: .9;
     position: relative;
     transition: opacity .3s ease-out;
 }

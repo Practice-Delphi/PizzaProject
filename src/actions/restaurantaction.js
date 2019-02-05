@@ -132,7 +132,7 @@ export const getRestaurants = () => (dispatch, getState) => {
                 if (logoImageId) {
                     dispatch(getPhoto(logoImageId, token));
                 }
-                if (images) {
+                if (images && Array.isArray(images)) {
                     images.forEach(image => dispatch(getPhoto(image, token)));
                 }
             })
