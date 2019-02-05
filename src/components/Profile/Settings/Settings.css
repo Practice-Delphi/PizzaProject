@@ -33,34 +33,34 @@
 
 .settingsMain {
     flex-grow: 5;
-    display: flex;
-    justify-content: center;
+    margin: 0 20px;
 }
 
 .settingsForm {
     max-width: 600px;
     min-width: 300px;
     color: rgb(204, 127, 26);
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
 }
 
-.settingsForm > h2 {
-    margin: 0;
+.settingsForm > h1 {
+    align-self: center;
 }
 
-.settingsForm > h3 {
-    margin: 0;
+.settingsForm > h2, h3 {
+    margin: 0 auto;
 }
 
 .settingsForm > input {
     align-self: center;
-    width: 100%;
+    width: 90%;
     margin: 10px 0;
     padding: 3px 6px;
     height: 29px;
-    border: 2px solid green;
-    align-self: center;
+    border: 2px solid #3D3D40;
+    max-width: 300px;
 }
 
 .settingsForm > input[type=submit] {
@@ -68,10 +68,11 @@
     width: 200px;
     margin: 10px auto;
     height: 33px;
-    color: rgb(224, 214, 71);
-    background-color: green;
-    border: 1px solid green;
+    color: #3E78B2;
+    background-color: #3D3D40;
+    border: none;
     font-size: 1.4rem;
+    transition: opacity .3s ease-out;
 }
 
 .settingsForm > input[type=submit]:hover {
@@ -81,23 +82,25 @@
 .settingsForm > textarea {
     align-self: center;
     height: 100px;
-    width: 100%;
+    width: 90%;
     margin: 10px 0;
     padding: 3px 6px;
-    border: 2px solid green;
+    border: 2px solid #3D3D40;
+    max-width: 300px;
 }
 
 .settingsPhotoInput {
-    color: rgb(224, 214, 71);
+    color: #3E78B2;
     opacity: 1;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: green;
+    background-color: #3D3D40;
     transition: opacity .3s ease-out;
     margin: 10px auto;
+    align-self: center;
 }
 
 .settingsPhotoInput > input[type=file] {
@@ -117,19 +120,19 @@
 
 .settingsPhotoInput > label {
     padding: 10px;
-    font-size: 1.4rem;
-    font-weight: bold;
+    font-size: 1rem;
 }
 
 .settingsPhotoPreview {
     width: 300px;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     border-radius: 5px;
+    align-self: center;
 }
 
 .slider {
@@ -145,7 +148,7 @@
 .settingsPhotoPreview > img {
     position: absolute;
     margin: auto;
-    min-height: 200px;
+    min-height: 300px;
     min-width: 300px;
     width: 300px;
     height: auto;
@@ -169,6 +172,7 @@
     position: relative;
     border-radius: 5px;
     transition: opacity .3s ease-out;
+    align-self: center;
 }
 
 .settingProfilePhotoInput:hover {
@@ -192,7 +196,7 @@
     left: 0;
     width: 400px;
     height: 400px;
-    z-index: 2;
+    z-index: 1;
 }
 
 @keyframes slideranim {

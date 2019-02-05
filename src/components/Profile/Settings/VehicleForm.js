@@ -93,9 +93,7 @@ class VehicleForm extends Component {
                     <h1>Change your vehicle</h1>
                     
                     <h2>Add photos</h2>
-                    <div>
-                        {this.renderPreview()}
-                    </div>
+                    {this.renderPreview()}
                     <div className="settingsPhotoInput">
                         <input type='file' accept='image/*' multiple onChange={(e) => { this.chooseVehPhoto(e) }} />
                         <label>Add photos</label>

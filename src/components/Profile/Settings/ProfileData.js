@@ -48,7 +48,7 @@ class ProfileData extends Component {
                     <input type="text" placeholder="First Name" onChange={(e) => { this.setState({ firstName: e.target.value }) }} />
                     <input type="text" placeholder="Last Name" onChange={(e) => { this.setState({ lastName: e.target.value }) }} />
 
-                    <h2>Phone Namber</h2>
+                    <h2>Phone Number</h2>
                     <input type="text" placeholder="Phone Number" onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }} />
 
                     <h2>Password</h2>

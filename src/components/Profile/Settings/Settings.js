@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import './Settings.css';
 import ProfileData from './ProfileData';
-import RestaurantForm from './RestaurantForm';
 import VehicleForm from './VehicleForm';
 import LicenseForm from './LicenseForm';
 
@@ -16,20 +15,6 @@ class Settings extends Component {
         this.state = {
             show: 'ProfileData',
         }
-    }
-
-    renderAddRestaurantButton() {
-        const { user } = this.props.userData;
-        if (user && user.role === 'seller') {
-            return (
-                <div className={`settingsTypeBarButton ${(this.state.show === 'AddRestaurant') ? 'selected' : ''}`}
-                    onClick={() => { this.setState({ show: 'AddRestaurant' }) }}>
-                        AddRestaurant
-                    <div className="barBorder"></div>
-                </div>
-            )
-        }
-        return null;
     }
 
     renderDriverButton(name, type) {
@@ -49,7 +34,6 @@ class Settings extends Component {
     renderSettingsMain() {
         switch (this.state.show) {
             case 'ProfileData': return <ProfileData />;
-            case 'AddRestaurant': return  <RestaurantForm />;
             case 'ChangeVehicle': return <VehicleForm />;
             case 'UploadPhoto' : return <UploadPhoto />;
             case 'ChangeLicense': return <LicenseForm />;
@@ -71,7 +55,6 @@ class Settings extends Component {
                     Upload Photo
                     <div className="barBorder"></div>
                 </div>
-                {this.renderAddRestaurantButton()}
                 {this.renderDriverButton('ChangeVehicle', 'ChangeVehicle')}
                 {this.renderDriverButton('ChangeLicense', 'ChangeLicense')}
             </div>

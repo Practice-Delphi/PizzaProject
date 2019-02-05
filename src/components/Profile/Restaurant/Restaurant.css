@@ -1,0 +1,193 @@
+.restContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 20px;
+    min-height: 100px;
+}
+
+.restContainer > h1 {
+    margin: 10px 0;
+    color: rgb(204, 127, 26);
+}
+
+.restMap {
+    max-width: 900px;
+    margin: auto;
+    width: 100%;
+    min-width: 300px;
+}
+
+.restList {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+    align-self: stretch;
+}
+
+.restItemMain {
+    cursor: pointer;
+    display: flex;
+    padding: 10px 5px;
+    border-bottom: 2px solid rgb(204, 127, 26);
+    transition: opacity .3s ease-out;
+}
+
+.restItemMain > h2 {
+    margin: auto 10px;
+    color: rgb(204, 127, 26);
+}
+
+.restItemMain:hover {
+    opacity: .8;
+}
+
+.restItemLogo {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.restItemLogo > img {
+    min-width: 64px;
+    min-height: 64px;
+    width: 100%;
+    height: auto;
+}
+
+.restItemImage {
+    width: 100%;
+    max-width: 500px;
+    min-width: 300px;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.restItemImage > img {
+    width: 100%;
+    height: auto;
+}
+
+.restItemInfo {
+    width: 100%;
+    overflow: hidden;
+}
+
+.open {
+    max-height: 1500px;
+    transition: max-height .7s ease-out;
+}
+
+.close {
+    max-height: 0;
+    transition: max-height .3s ease-in;
+    visibility: hidden;
+}
+
+.restItemInfo > p {
+    font-size: 1.2rem;
+    color: rgb(204, 127, 26);
+}
+
+.restItemGalary {
+    width: 100%;
+    margin: 20px 0;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    display: flex;
+}
+
+
+.restForm  {
+    color: rgb(204, 127, 26);
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.restForm  > h1 {
+    align-self: center;
+}
+
+.restForm  > h2, h3 {
+    margin: 0 auto;
+}
+
+.restForm > input {
+    align-self: center;
+    width: 90%;
+    margin: 10px 0;
+    padding: 3px 6px;
+    height: 29px;
+    border: 2px solid #3D3D40;
+    max-width: 300px;
+}
+
+.restForm  > input[type=submit] {
+    cursor: pointer;
+    width: 200px;
+    margin: 10px auto;
+    height: 33px;
+    color: #3E78B2;
+    background-color: #3D3D40;
+    border: none;
+    font-size: 1.4rem;
+    transition: opacity .3s ease-out;
+}
+
+.restForm  > input[type=submit]:hover {
+    opacity: .8;
+}
+
+.restForm  > textarea {
+    align-self: center;
+    height: 100px;
+    width: 90%;
+    margin: 10px 0;
+    padding: 3px 6px;
+    border: 2px solid #3D3D40;
+    max-width: 300px;
+}
+.addimage {
+    width: 300px;
+    height: 300px;
+}
+
+.addimage > img {
+    width: 64px;
+    height: 54px;
+    margin: auto;
+}
+
+.imageInput {
+    opacity: .7;
+    position: relative;
+    transition: opacity .3s ease-out;
+}
+
+.imageInput:hover {
+    opacity: .5;
+}
+
+.imageInput > input[type=file] {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    z-index: 2;
+}
+
+
+

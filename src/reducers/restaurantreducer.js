@@ -11,6 +11,7 @@ import {
     RESTAURANT_PHOTOSUPLOAD_START,
     RESTAURANT_PHOTOSUPLOAD_SUCCESS,
     RESTAURANT_PHOTOSUPLOAD_FAILED,
+    DELETE_RESTAURANT,
 } from '../actions/restaurantaction';
 
 import { CLEAR_ERRORS, CLEAR_ALL } from '../actions/authaction';
@@ -26,6 +27,7 @@ const restaurantsData = (state = restaurantsInitState, action) => {
         case FETCH_RESTAURANT_START: return Object.assign({}, state, { loading: true });
         case FETCH_RESTAURANT_SUCCESS: return Object.assign({}, state, { loading: false, restaurants: action.restaurants });
         case FETCH_RESTAURANT_FAILED: return Object.assign({}, state, { loading: false, error: action.error });
+        case DELETE_RESTAURANT: return Object.assign({}, state, { restaurants: state.restaurants.filter(r => r.id !== action.id) });
         case CLEAR_ERRORS: return Object.assign({}, state, { error: null });
         case CLEAR_ALL: return Object.assign({}, restaurantsInitState);
         default: return state;
