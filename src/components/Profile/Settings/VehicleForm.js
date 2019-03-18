@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 import './Settings.css';
 import defaultphoto from '../../../assets/default-vehicle.png';
-
+import Photo from "../../common/Photo";
+import TextError from '../../common/TextError';
+import Loading from '../../Loading/Loading';
+import GlobalWrap from '../../common/GlobalWrap';
 import { connect } from 'react-redux';
 import { uploadVehicle } from "../../../actions/vehiclesaction";
 
@@ -40,11 +43,9 @@ class VehicleForm extends Component {
     }
     
     submit() {
-        const { loading } = this.props.vehData;
+        const { loading } = this.props.chengeddata;
         const { uploadVehicle } = this.props;
-
         const { model, brand, color, number, vehphoto } = this.state;
-
         if (!loading) {
             uploadVehicle({ model, number, brand, color }, vehphoto);
         }
@@ -69,66 +70,60 @@ class VehicleForm extends Component {
         if (Array.isArray(urls)) {
             if (urls.length === 0) {
                 return (
-                    <div className="settingsPhotoPreview">
-                        <img src={defaultphoto} alt='photo' />
-                    </div>
+                    <Photo styles='landscape' url={defaultphoto} />
                 )
             }
             return urls.map((url, key) => {
                 return (
-                    <div key={key} 
-                    className={`settingsPhotoPreview slider ${(key === slide) ? 'block' : 'none'}`}
-                    onClick={() => { this.changeSlide(1) }}>
-                        <img src={url} alt='photo' />
-                    </div>
+                    <Photo id={url} styles={`landscape slider ${(key === slide) ? 'block' : 'none'}`} url={url} />
                 );
             });
         }
     }
 
     render() {
-        if (this.props.userData.user) {
-            return (
-                <form className="settingsForm" onSubmit={e => e.preventDefault()}>
-                    <h1>Change your vehicle</h1>
-                    
-                    <h2>Add photos</h2>
+        const { loading, success, error } = this.props.chengeddata;
+        return (
+            <form className="settingsForm" onSubmit={e => e.preventDefault()}>
+                {loading && <GlobalWrap styles="gw-dark"><Loading /></GlobalWrap>}
+                <h1>Change your vehicle</h1>
+                <h2>Add photos</h2>
+                <div onClick={() => { this.changeSlide(1) }}>
                     {this.renderPreview()}
-                    <div className="settingsPhotoInput">
-                        <input type='file' accept='image/*' multiple onChange={(e) => { this.chooseVehPhoto(e) }} />
-                        <label>Add photos</label>
-                    </div>
+                </div>
+                <div className="settingsPhotoInput">
+                    <input type='file' accept='image/*' multiple onChange={(e) => { this.chooseVehPhoto(e) }} />
+                    <label>Add photos</label>
+                </div>
 
-                    <h2>Number</h2>
-                    <input type="text" placeholder="Number" onChange={(e) => { this.setState({ number: e.target.value }) }} />
+                <h2>Number</h2>
+                <input type="text" placeholder="Number" onChange={(e) => { this.setState({ number: e.target.value }) }} />
 
-                    <h2>Model</h2>
-                    <input type="text" placeholder="Model" onChange={(e) => { this.setState({ model: e.target.value }) }} />
+                <h2>Model</h2>
+                <input type="text" placeholder="Model" onChange={(e) => { this.setState({ model: e.target.value }) }} />
 
-                    <h2>Brand</h2>
-                    <input type="text" placeholder="Brand" onChange={(e) => { this.setState({ brand: e.target.value }) }} />
+                <h2>Brand</h2>
+                <input type="text" placeholder="Brand" onChange={(e) => { this.setState({ brand: e.target.value }) }} />
 
-                    <h2>Color</h2>
-                    <input type="text" placeholder="Color" onChange={(e) => { this.setState({ color: e.target.value }) }} />
-
-                    <br></br>
-                    <input type="submit" onClick={this.submit.bind(this)} value="Apply" />
-                </form>
-            )
-        }
+                <h2>Color</h2>
+                <input type="text" placeholder="Color" onChange={(e) => { this.setState({ color: e.target.value }) }} />
+                <br></br>
+                <TextError error={error}/>
+                <TextError success={success}/>
+                <input type="submit" onClick={this.submit.bind(this)} value="Apply" />
+            </form>
+        )
     }
 }
 
 VehicleForm.propTypes = {
-    history: PropTypes.object,
-    userData: PropTypes.object,
+    chengeddata: PropTypes.object,
     vehData: PropTypes.object,
     uploadVehicle: PropTypes.func,
 }
 
 const mapStateToProps = state => ({
-    history: state.historyData.history,
-    userData: state.userData,
+    chengeddata: state.chengeddata,
     vehData: state.vehData,
 });
 

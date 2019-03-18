@@ -30,6 +30,7 @@ export const photoClear = (id) => ({
 
 export const getPhoto = (id, tok) => (dispatch, getState) => {
     const { photosData } = getState();
+    if (!id) return;
     if (id && (!photosData[id] || photosData[id].error)) {
         const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
         if (token) {

@@ -290,7 +290,7 @@ export const deleteRestaurant = (id) => (dispatch, getState) => {
     })
         .then(res => {
             if (res.status === 200 || res.status === 201 || res.status === 204) {
-                dispatch(changeSuccess("Restaurant was delete"));
+                dispatch(changeSuccess("Restaurant was deleted"));
                 dispatch(deleteRest(id));
             } else if (res.status === 401) {
                 dispatch(refreshToken(token, deleteRestaurant, id));

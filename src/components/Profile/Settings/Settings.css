@@ -1,13 +1,17 @@
 .settingsContainer {
     max-width: 900px;
     margin: 20px auto;
-    display: flex;
-    flex-flow: row wrap;
+    /* display: flex;
+    flex-flow: row wrap; */
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto 1fr;
 }
 
 .settingsTypeBar {
     width: 200px;
-    border-right: 2px solid rgb(204, 127, 26);
+    grid-row: 1 / 2;
+    /* border-right: 2px solid rgb(204, 127, 26); */
 }
 
 .settingsTypeBarButton {
@@ -32,17 +36,20 @@
 }
 
 .settingsMain {
-    flex-grow: 5;
+    grid-row: 1 / 3;
+    /* display: flex;
+    flex-flow: column nowrap;
+    align-items: center; */
     margin: 0 20px;
 }
 
 .settingsForm {
-    max-width: 600px;
     min-width: 300px;
     color: rgb(204, 127, 26);
-    width: 100%;
+    width: auto;
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
 }
 
 .settingsForm > h1 {
@@ -123,18 +130,6 @@
     font-size: 1rem;
 }
 
-.settingsPhotoPreview {
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: 5px;
-    align-self: center;
-}
-
 .slider {
     cursor: pointer;
     transition: opacity .3s ease-out;
@@ -145,15 +140,6 @@
     opacity: .8;
 }
 
-.settingsPhotoPreview > img {
-    position: absolute;
-    margin: auto;
-    min-height: 300px;
-    min-width: 300px;
-    width: 300px;
-    height: auto;
-}
-
 .block {
     display: block;
 }
@@ -162,41 +148,15 @@
     display: none;
 }
 
-.settingProfilePhotoInput {
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.settingsPhotoPreview {
     position: relative;
-    border-radius: 5px;
     transition: opacity .3s ease-out;
-    align-self: center;
 }
 
-.settingProfilePhotoInput:hover {
+
+
+.settingsPhotoPreview:hover {
     opacity: .8;
-}
-
-.settingProfilePhotoInput > img {
-    position: absolute;
-    margin: auto;
-    min-height: 300px;
-    min-width: 300px;
-    width: 300px;
-    height: auto;
-}
-
-.settingProfilePhotoInput > input[type=file] {
-    position: absolute;
-    cursor: pointer;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    width: 400px;
-    height: 400px;
-    z-index: 1;
 }
 
 @keyframes slideranim {
@@ -210,7 +170,13 @@
 
 @media screen and (max-width: 500px) {
     .settingsContainer {
-        flex-flow: column nowrap;
+        grid-template-columns: 1fr;
+        margin: 20px 10px;
+    }
+
+    .settingsMain {
+        grid-row: auto;
+        margin: 10px 0;
     }
 
     .settingsForm > input {
@@ -218,8 +184,8 @@
     }
 
     .settingsTypeBar {
-        width: 300px;
-        margin: auto;
-        border-right: none;
+        width: auto;
+        /* margin: auto;
+        border-right: none; */
     }
 }

@@ -1,0 +1,57 @@
+.set-main {
+    position: relative;
+}
+
+.set-sm > .set-icon > img {
+    width: 24px;
+    height: 24px;
+}
+
+.set-md > .set-icon > img {
+    width: 36px;
+    height: 36px;
+}
+
+.set-lg > .set-icon > img {
+    width: 48px;
+    height: 48px;
+}
+
+.set-list {
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 30px;
+    right: 0;
+    max-width: 0;
+    max-height: 0;
+    width: auto;
+    height: auto;
+    transition: max-height .9s ease-out;
+}
+
+.set-main:hover > .set-list, .set-open {
+    max-width: 300px;
+    max-height: 300px;
+    border: 1px solid rgba(0,0,0,.2);
+    background: #fafafa;
+    box-shadow: rgba(0,0,0,.2) 0 0 1px 1px;
+    padding: 5px;
+}
+
+.set-list > div {
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    font-weight: bold;
+}
+
+.set-list > div, .set-icon > img {
+    cursor: pointer;
+    transition: opacity .3s ease-out;
+}
+
+.set-list > div:hover, .set-icon:hover > img  {
+    opacity: .7;
+}

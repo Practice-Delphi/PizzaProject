@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import './Settings.css';
 import defaultphoto from '../../../assets/default-vehicle.png';
+import Photo from '../../common/Photo';
+import GlobalWrap from '../../common/GlobalWrap';
+import Loading from '../../Loading/Loading';
+import TextError from '../../common/TextError';
 
 import { connect } from 'react-redux';
 import { uploadDocument } from "../../../actions/docaction";
@@ -11,10 +15,10 @@ class LicenseForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          front: null,
-          fronturl: null,
-          back: null,
-          backurl: null,
+            front: null,
+            fronturl: null,
+            back: null,
+            backurl: null,
         }
     }
 
@@ -31,9 +35,9 @@ class LicenseForm extends Component {
             });
         }
     }
-    
+
     submit() {
-        const { loading } = this.props.docData;
+        const { loading } = this.props.chengeddata;
         const { uploadDocument } = this.props;
         const { front, back } = this.state;
         if (!loading) {
@@ -41,67 +45,39 @@ class LicenseForm extends Component {
         }
     }
 
-    renderLicensePreview(type) {
-        let url = null;
-        switch (type) {
-            case 'front': {
-                url = this.state.fronturl;
-                break;
-            }
-            case 'back': {
-                url = this.state.backurl;
-                break;
-            }
-            default: url = null;
-        }
-        if (!url) {
-            return (
-                <div className="settingsPhotoPreview">
-                    <img src={defaultphoto} alt='photo' />
-                </div>
-            )
-        }
-        return (
-            <div className='settingsPhotoPreview'>
-                <img src={url} alt='logo' />
-            </div>
-        );
-    }
-
     render() {
-        if (this.props.userData.user) {
-            return (
-                <form className="settingsForm" onSubmit={e => e.preventDefault()}>
-                    <h1>Change your license</h1>
-                    
-                    <h2>Add front image</h2>
-                    {this.renderLicensePreview('front')}
-                    <div className="settingsPhotoInput">
-                        <input type='file' accept='image/*' onChange={(e) => { this.chooseLicensePhoto(e, 'front') }} />
-                        <label>Add image</label>
-                    </div>
-
-                    <h2>Add back image</h2>
-                    {this.renderLicensePreview('back')}
-                    <div className="settingsPhotoInput">
-                        <input type='file' accept='image/*' onChange={(e) => { this.chooseLicensePhoto(e, 'back') }} />
-                        <label>Add image</label>
-                    </div>
-                    <br></br>
-                    <input type="submit" onClick={this.submit.bind(this)} value="Apply" />
-                </form>
-            )
-        }
+        const { fronturl, backurl } = this.state;
+        const { loading, success, error } = this.props.chengeddata;
+        return (
+            <form className="settingsForm" onSubmit={e => e.preventDefault()}>
+                { loading && <GlobalWrap styles="gw-dark"><Loading /></GlobalWrap> }
+                <h1>Change your license</h1>
+                <h2>Add front image</h2>
+                <Photo styles="landscape settingsPhotoPreview" url={(fronturl) ? fronturl : defaultphoto} alt="frontphoto">
+                    <input type='file' accept='image/*' onChange={(e) => { this.chooseLicensePhoto(e, 'front') }} />
+                </Photo>
+                <h2>Add back image</h2>
+                <Photo styles="landscape settingsPhotoPreview" url={(backurl) ? backurl : defaultphoto} alt="backphoto">
+                    <input type='file' accept='image/*' onChange={(e) => { this.chooseLicensePhoto(e, 'back') }} />
+                </Photo>
+                <br></br>
+                <TextError error={error}/>
+                <TextError success={success}/>
+                <input type="submit" onClick={this.submit.bind(this)} value="Apply" />
+            </form>
+        )
     }
 }
 
 LicenseForm.propTypes = {
     uploadDocument: PropTypes.func,
     docData: PropTypes.object,
-    userData:PropTypes.object,
+    userData: PropTypes.object,
+    chengeddata: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
+    chengeddata: state.chengeddata,
     docData: state.docData,
     userData: state.userData,
 });

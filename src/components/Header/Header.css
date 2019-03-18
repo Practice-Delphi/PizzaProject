@@ -74,7 +74,7 @@
     color: #3E78B2;
     
 }
-.headerLinkButtom{
+.headerLinkButton {
     cursor: pointer;
     text-decoration : none;
     color: #3E78B2;
@@ -115,7 +115,7 @@
     box-shadow: 0 3px 3px 5px rgba(0,0,0,.2);
 }
 
-.open {
+.burg-open {
     transform: translateX(0);
     width: 320px;
 }

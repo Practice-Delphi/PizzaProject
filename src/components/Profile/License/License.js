@@ -8,6 +8,8 @@ import defaultphoto from '../../../assets/default-vehicle.png';
 import Loading from '../../Loading/Loading';
 import Alert from '../../Alert/Alert';
 
+import PhotoWrap from '../../common/PhotoWrap';
+
 import { connect } from 'react-redux';
 
 import { getDocument } from '../../../actions/docaction';
@@ -43,62 +45,27 @@ class License extends Component {
         }
     }
 
-    renderPhoto(id) {
-        const { photosData, getPhoto } = this.props;
-        if (photosData[id]) {
-            const { loading, url, error } = photosData[id];
-            if (url) {
-                return <img src={url} alt='photo' />;
-            }
-            if (loading) {
-                return <Loading />
-            }
-            if (error) {
-                return <Alert message='Photo don`t load' click={() => { getPhoto(id) }} />
-            }
-            return <img src={defaultphoto} alt='photo' />;
-        }
-        return <img src={defaultphoto} alt='photo' />;
-    }
-
     render() {
         const { doc, error, loading } = this.props.docData;
         const { getDocument } = this.props;
-        if (doc) {
-            return (
-                <div className='licenseContainer'>
-                    <h1>Your License</h1>
+        return (
+            <div className='container col ai-streatch card licenseContainer'>
+                <h1>Your License</h1>
+                {loading && <Loading />}
+                {!loading && error && <Alert message="License dont load" click={() => { getDocument() }} />}
+                {doc && !loading && !error && (
                     <div className="licenseImages">
-                        <div className='licenseImage'>
-                            {this.renderPhoto(doc.frontImage)}
-                        </div>
-                        <div className='licenseImage'>
-                            {this.renderPhoto(doc.backImage)}
-                        </div>
+                        <PhotoWrap id={doc.frontImage} defaulturl={defaultphoto} styles="landscape" alt="license-front"/>
+                        <PhotoWrap id={doc.backImage} defaulturl={defaultphoto} styles="landscape" alt="license-back"/>
                     </div>
-                </div>
-            );
-        }
-        if (error) {
-            return (
-                <div className='licenseContainer'>
-                    <Alert message="License dont load" click={() => { getDocument() }} />
-                </div>
-            )
-        }
-        if (loading) {
-            return (
-                <div className='licenseContainer'>
-                    <Loading />
-                </div>
-            )
-        }
-        return null;
+                )}
+            </div>
+        );
     }
+      
 }
 
 License.propTypes = {
-    userData: PropTypes.object,
     docData: PropTypes.object,
     getDocument: PropTypes.func,
     getPhoto: PropTypes.func,
@@ -106,7 +73,6 @@ License.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    userData: state.userData,
     docData: state.docData,
     photosData: state.photosData,
 });

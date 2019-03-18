@@ -11,9 +11,13 @@ import License from './License/License';
 
 import uparrow from '../../assets/uparrow.svg';
 
+
+import { fullroles, allroles } from '../../appconfig';
+
 import { connect } from 'react-redux';
 import { getUser } from '../../actions/authaction';
 import RestaurantsView from './Restaurant/RestaurantsView';
+import DishesView from './Dishes/DishesView';
 
 class Profile extends Component {
 
@@ -73,29 +77,35 @@ class Profile extends Component {
 
     renderToolbar() {
         const { user } = this.props.userData;
-        if (user && user.role === 'driver') {
-            return (
-                <div className="ProfToolBar" >
-                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
-                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Vehicle' }) }}>Vehicle<div className="castomHover2line"></div></div>
-                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'License' }) }}>License<div className="castomHover2line"></div></div>
-                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
-                </div>
-            )
-        }
-        if (user && user.role === 'seller') {
-            return (
-                <div className="ProfToolBar" >
-                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
-                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Restaurants' }) }}>Restaurants<div className="castomHover2line"></div></div>
-                    <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
-                </div>
-            )
-        }
+        // if (user && user.role === 'driver') {
+        //     return (
+        //         <div className="ProfToolBar" >
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Vehicle' }) }}>Vehicle<div className="castomHover2line"></div></div>
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'License' }) }}>License<div className="castomHover2line"></div></div>
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
+        //         </div>
+        //     )
+        // }
+        // if (user && user.role === 'owner') {
+        //     return (
+        //         <div className="ProfToolBar" >
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Restaurants' }) }}>Restaurants<div className="castomHover2line"></div></div>
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Dishes' }) }}>Dishes<div className="castomHover2line"></div></div>
+        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
+        //         </div>
+        //     )
+        // }
         return (
             <div className="ProfToolBar" >
                 <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
+                { user && allroles.get(user.role) === 'Driver' && <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Vehicle' }) }}>Vehicle<div className="castomHover2line"></div></div>}
+                { user && allroles.get(user.role) === 'Driver' && <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'License' }) }}>License<div className="castomHover2line"></div></div>}
+                { user && fullroles.get(user.role) === 'Owner' && <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Restaurants' }) }}>Restaurants<div className="castomHover2line"></div></div>}
+                { user && fullroles.get(user.role) === 'Owner' &&  <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Dishes' }) }}>Dishes<div className="castomHover2line"></div></div>}
                 <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
+                
             </div>
         )
     }
@@ -106,6 +116,7 @@ class Profile extends Component {
             case 'Vehicle': return <Vehicle />;
             case 'Restaurants': return <RestaurantsView />;
             case 'License': return <License />;
+            case 'Dishes': return <DishesView />;
             default: return null;
         }
     }

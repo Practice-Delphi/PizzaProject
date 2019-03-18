@@ -1,4 +1,4 @@
-.container {
+.load-container {
     position: fixed;
     width: 8%;
     height: 8%;
@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.containerlocal {
+.load-containerlocal {
     width: 100%;
     height: 100%;
     display: flex;
@@ -17,13 +17,13 @@
     align-items: center;
 }
 
-.containerlocal > main {
+.load-containerlocal > main {
     width: 48px;
     height: 48px;
     text-align: center;
 }
 
-.circle {
+.load-circle {
 	width: 48px;
 	height: 48px;
 	margin: 0 auto;
@@ -35,16 +35,16 @@
 	animation: localanim 690ms infinite linear;
 }
 
-.container > .main {
+.load-container > .load-main {
     width: 100px;
     height: 100px;
 }
 
-.main {
+.load-main {
     position: relative;
 }
 
-.slice {
+.load-slice {
     top: 0;
     left: 0;
     position: absolute;

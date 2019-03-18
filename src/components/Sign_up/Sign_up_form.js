@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 import '../Sign_In/Sign_in.css';
 import './Sign_up.css';
 import Header from '../Header/Header';
+import TextError from '../common/TextError';
 
 import ValidationModel from '../../validation';
 
@@ -19,8 +20,6 @@ class SignUpForm extends Component {
             email: null,
             firstName: null,
             lastName: null,
-            phoneNumber: null,
-            privateKey: null,
             password: null,
             confirmPassword: null,
             model: new ValidationModel(),
@@ -29,32 +28,26 @@ class SignUpForm extends Component {
     }
 
     componentDidMount() {
-        // if (this.props.userData.user) {
-        //     this.props.history.replace('/profile');
-        // }
-
         this.state.model.setModel({
             email: {
                 name: 'Email',
                 type: 'email',
             },
-            phoneNumber: {
-                name: 'Phone Number',
-                type: 'phonenumber'
-            },
             password: {
                 name: 'Password',
                 type: 'password'
+            },
+            confirmPassword: {
+                name: 'ConfirmPassword',
+                type: 'confirmPassword',
+                password: 'password',
+                required: false,
             },
             firstName: {
                 name: 'First Name'
             },
             lastName: {
                 name: 'Last Name'
-            },
-            privateKey: {
-                name: 'Private Key',
-                type: 'key'
             },
         })
     }
@@ -66,18 +59,8 @@ class SignUpForm extends Component {
     }
 
     submit() {
-        const { model, errors, confirmPassword, ...data } = this.state;
-        // const data = {
-        //     email: (this.state.email) ? this.state.email.toLowerCase() : '',
-        //     firstName: this.state.firstName,
-        //     lastName: this.state.lastName,
-        //     phoneNumber: this.state.phoneNumber,
-        //     privateKey: this.state.privateKey,
-        //     password: this.state.password,
-        //     confirmPassword: this.state.confirmPassword,
-        // }
+        const { model, errors, ...data } = this.state;
         model.validate(data);
-        model.confirm(data.password, confirmPassword);
         if (model.isError()) {
             this.setState({ errors: model.getErrors() });
         } else {
@@ -106,53 +89,39 @@ class SignUpForm extends Component {
                 <div className="SignInForm">
                     <form onSubmit={(e) => { e.preventDefault() }}>
                         <label className="signupFieldLabel">First Name</label>
-                        <div className="signinError">{(errors.firstName) ? errors.firstName : ''}</div>
+                        <TextError error={errors.firstName}/>
                         <input
                             className="signInInput"
                             type="text" placeholder="Your first name"
                             onChange={(e) => { this.setState({ firstName: e.target.value }) }}
                             required />
                         <label className="signupFieldLabel">Last Name</label>
-                        <div className="signinError">{(errors.lastName) ? errors.lastName : ''}</div>
+                        <TextError error={errors.lastName}/>
                         <input
                             className="signInInput"
                             type="text" placeholder="Your last name"
                             onChange={(e) => { this.setState({ lastName: e.target.value }) }}
                             required />
                         <label className="signupFieldLabel">Email</label>
-                        <div className="signinError">{(errors.email) ? errors.email : ''}</div>
-                        <input
-                            className="signInInput"
-                            type="email" placeholder="Your Email"
-                            onChange={(e) => { this.setState({ email: e.target.value }) }}
-                            required />
-                        <label className="signupFieldLabel">Phone Number</label>
-                        <div className="signinError">{(errors.phoneNumber) ? errors.phoneNumber : ''}</div>
-                        <input
-                            className="signInInput"
-                            type="text" placeholder="Your Phone Number"
-                            onChange={(e) => { this.setState({ phoneNumber: e.target.value }) }}
-                            required />
-                        <label className="signupFieldLabel">Private Key</label>
-                        <div className="signinError">{(errors.privateKey) ? errors.privateKey : ''}</div>
+                        <TextError error={errors.email}/>
                         <input
                             className="signInInput"
                             type="text" placeholder="Your Private Key"
                             onChange={(e) => { this.setState({ privateKey: e.target.value }) }}
                             required />
                         <label className="signupFieldLabel">Password</label>
-                        <div className="signinError">{(errors.password) ? errors.password : ''}</div>
+                        <TextError error={errors.password}/>
                         <input
                             className="signInInput"
                             type="password" placeholder="Your password"
                             onChange={(e) => { this.setState({ password: e.target.value }) }} />
                         <label className="signupFieldLabel">Confirm Password</label>
-                        <div className="signinError">{(errors.confirmPassword) ? errors.confirmPassword : ''}</div>
+                        <TextError error={errors.confirmPassword}/>
                         <input
                             className="signInInput"
                             type="password" placeholder="Confirm your password"
                             onChange={(e) => { this.setState({ confirmPassword: e.target.value }) }} />
-                        <div className="signinError">{(error) ? error : ''}</div>
+                        <TextError error={error}/>
                         <input className="signInInputSubmit" type="submit" value="Submit" onClick={this.submit.bind(this)} />
                         <label className="signInLink">Have account <NavLink to={`/sign-in`}>sign in</NavLink> now.</label>
                     </form>

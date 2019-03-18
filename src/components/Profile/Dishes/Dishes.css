@@ -1,0 +1,104 @@
+.dishContainer {
+    /* display: flex;
+    flex-flow: column nowrap;
+    align-items: center; */
+    margin: 20px 20px;
+    min-height: 100px;
+}
+
+.dishRestaurantSelect {
+    align-self: stretch;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.dishContainer .card {
+    padding: 20px;
+}
+
+.dishRestaurantSelect > select {
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: rgba(0,0,0,0.2) 0 0 1px 1px;
+    padding: 5px 10px;
+    margin: auto;
+    width: 200px;
+    max-width: 200px;
+}
+
+.dishRestaurantSelect > h1, .dishItem > h2, .categoryItem > h2, .categoryContainer > h1 {
+    text-align: center;
+    margin: auto;
+    color: rgb(204, 127, 26);
+}
+
+.dishesList {
+    margin-top: 10px;
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.dishItem > p {
+    font-size: 1rem;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.dishItemLables {
+    margin: 5px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.dishItemLables > label strong {
+    color: rgb(204, 127, 26);
+}
+
+.dishImage {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.categoryContainer {
+    min-height: 300px;
+}
+
+.categoryList {
+    width: auto;
+    margin: 20px 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    justify-content: space-between;
+}
+
+.categoryItem {
+    margin: 0 5px;
+    cursor: pointer;
+    transition: opacity .3s ease-out;
+}
+
+.categoryItem:hover {
+    opacity: .7;
+}
+
+@media screen and (max-width: 800px) {
+    .dishesList {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .dishContainer {
+        margin: 10px;
+    }
+
+    .dishesList {
+        grid-template-columns: 1fr;
+    }
+}
+
+

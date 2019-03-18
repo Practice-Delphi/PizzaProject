@@ -4,8 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 import './Sign_in.css';
 import Header from '../Header/Header';
+import TextError from '../common/TextError';
 
 import ValidationModel from '../../validation';
+
+import { signingoogleurl, redirecturl } from '../../appconfig';
 
 import { connect } from 'react-redux';
 import { loginUser } from  '../../actions/authaction';
@@ -69,22 +72,24 @@ class SignInForm extends Component {
                 <div className="SignInForm">
                     <form onSubmit={(e) => { e.preventDefault() }}>
                         <div className="signinError">{(error) ? error : ''}</div>
-                        <div className="signinError">{(errors.email) ? errors.email : ''}</div>
+                        <TextError error={errors.email}/>
                         <input
                             className="signInInput"
                             type="email" placeholder="Your email adress"
                             onChange={(e) => { this.setState({ email: e.target.value }) }}
                             required />
-                        <div className="signinError">{(errors.password) ? errors.password : ''}</div>
+                        <TextError error={errors.password}/>
                         <input
                             className="signInInput"
                             type="password" placeholder="Your password"
                             onChange={(e) => { this.setState({ password: e.target.value }) }}
                             required />
-
                         <input className="signInInputSubmit" type="submit" value="Submit" onClick={this.submit.bind(this)} />
                         <label className="signInLink">Dont have account already <NavLink to={`/sign-up`}>create one.</NavLink></label>
+                        <br></br>
+                        <label className="signInLink">Sign in with <a href={`${signingoogleurl}?role=${this.props.type}&url=${redirecturl}`}>Google</a></label>
                     </form>
+                    
                 </div>
             </div>
         );
@@ -96,6 +101,7 @@ SignInForm.propTypes = {
     type: PropTypes.string.isRequired,
     login: PropTypes.func,
     history: PropTypes.object,
+    loginGoogle: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -104,7 +110,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    login: (data, role) => { dispatch(loginUser(data, role)) }
+    login: (data, role) => { dispatch(loginUser(data, role)) },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

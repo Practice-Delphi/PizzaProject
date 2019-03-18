@@ -1,21 +1,22 @@
 .restContainer {
-    display: flex;
+    /* display: flex;
     flex-flow: column nowrap;
-    align-items: center;
+    align-items: center; */
     margin: 20px;
     min-height: 100px;
 }
 
 .restContainer > h1 {
-    margin: 10px 0;
+    margin: 10px auto;
     color: rgb(204, 127, 26);
 }
 
 .restMap {
-    max-width: 900px;
-    margin: auto;
-    width: 100%;
-    min-width: 300px;
+    /* max-width: 900px; */
+    /* margin: auto; */
+    align-self: stretch;
+    padding: 20px;
+    min-width: 400px;
 }
 
 .restList {
@@ -25,11 +26,16 @@
     align-self: stretch;
 }
 
+.restItemContainer {
+    position: relative;
+}
+
 .restItemMain {
     cursor: pointer;
     display: flex;
     padding: 10px 5px;
-    border-bottom: 2px solid rgb(204, 127, 26);
+    margin: 0 0 5px 0;
+    /* border-bottom: 2px solid rgb(204, 127, 26); */
     transition: opacity .3s ease-out;
 }
 
@@ -42,51 +48,25 @@
     opacity: .8;
 }
 
-.restItemLogo {
-    width: 64px;
-    height: 64px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-.restItemLogo > img {
-    min-width: 64px;
-    min-height: 64px;
-    width: 100%;
-    height: auto;
-}
-
 .restItemImage {
-    width: 100%;
-    max-width: 500px;
-    min-width: 300px;
-    max-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin: 0 10px;
-}
-
-.restItemImage > img {
-    width: 100%;
-    height: auto;
+    width: 500px;
+    height: 300px;
+    min-width: 500px;
 }
 
 .restItemInfo {
-    width: 100%;
+    width: auto;
     overflow: hidden;
 }
 
-.open {
+.ri-open {
     max-height: 1500px;
     transition: max-height .7s ease-out;
 }
 
-.close {
+.ri-close {
+    margin: 0;
+    padding: 0 !important;
     max-height: 0;
     transition: max-height .3s ease-in;
     visibility: hidden;
@@ -100,7 +80,7 @@
 .restItemGalary {
     width: 100%;
     margin: 20px 0;
-    overflow-x: scroll;
+    overflow-x: auto;
     scroll-behavior: smooth;
     display: flex;
 }
@@ -108,7 +88,7 @@
 
 .restForm  {
     color: rgb(204, 127, 26);
-    width: 100%;
+    width: auto;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -132,7 +112,7 @@
     max-width: 300px;
 }
 
-.restForm  > input[type=submit] {
+.restForm > input[type=submit] {
     cursor: pointer;
     width: 200px;
     margin: 10px auto;
@@ -157,31 +137,34 @@
     border: 2px solid #3D3D40;
     max-width: 300px;
 }
+
+
+.addimage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .addimage > img {
     width: 200px;
     height: 200px;
 }
 
 .imageInput {
-    opacity: .9;
+    cursor: pointer;
     position: relative;
+    opacity: .9;
     transition: opacity .3s ease-out;
 }
 
 .imageInput:hover {
-    opacity: .5;
+    opacity: .7;
 }
 
-.imageInput > input[type=file] {
-    position: absolute;
-    cursor: pointer;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    width: 400px;
-    height: 400px;
-    z-index: 2;
+@media screen and (max-width:500px) {
+    .restContainer {
+        margin: 10px;
+    }
 }
-
 
 

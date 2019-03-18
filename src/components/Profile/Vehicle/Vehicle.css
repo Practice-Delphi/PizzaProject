@@ -1,36 +1,16 @@
 .vehicleContainer {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
     margin: 20px;
 }
 
 .vehicleImages {
-    width: 100%;
+    width: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
 }
 
-.vehicleImage {
-    width: 100%;
-    max-width: 500px;
-    min-width: 300px;
-    max-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.vehicleImage > img {
-    width: 100%;
-    height: auto;
-}
-
-
 .vehicleInfo {
-    width: 100%;
+    width: auto;
     max-width: 400px;
     min-width: 300px;
 }
@@ -55,6 +35,9 @@
 }
 
 @media only screen and (max-width: 500px) {
+    .vehicleContainer {
+        margin: 20px 10px;
+    }
     .vehicleImages {
         grid-template-columns: 1fr;
     }

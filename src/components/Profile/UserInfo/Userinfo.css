@@ -1,10 +1,12 @@
-.ProfileConteiner{
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
+.ProfileContainer{
+    margin: 20px;
 }
-.mainProfilePage{
+
+.ProfileContainer .card {
+    padding: 20px;
+}
+
+.mainProfilePage {
     max-width: 600px;
     padding-top: 50px;
     display: flex;
@@ -18,28 +20,21 @@
     display: flex;
     flex-flow: row nowrap;
 }
+
+.infostring > h3 {
+    margin: auto;
+    text-align: center;
+    max-width: 250px;
+    word-wrap: break-word;
+}
 .inoIcon{
     width: 40px;
     height: 40px;
     margin: auto 0;
 }
 
-.profilePhoto {
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: 5px;
-}
-
-.profilePhoto > img {
-    position: absolute;
-    margin: auto;
-    min-height: 300px;
-    min-width: 300px;
-    width: 300px;
-    height: auto;
+@media screen and (max-width: 500px) {
+    .ProfileConteiner {
+        margin: 20px 10px;
+    }
 }

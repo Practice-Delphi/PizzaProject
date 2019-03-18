@@ -1,0 +1,8 @@
+.TextError {
+    color: red;
+    font-size: 1rem;
+}
+
+.te-success {
+    color: blue;
+}

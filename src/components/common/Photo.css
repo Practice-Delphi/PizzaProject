@@ -1,0 +1,73 @@
+.Photo {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.Photo > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+.profile {
+    width: 200px;
+    height: 200px;
+}
+
+.landscape {
+    width: 300px;
+    height: 200px;
+}
+
+.profile > img {
+    min-height: 200px;
+    min-width: 200px;
+    width: 200px;
+}
+
+.label {
+    width: 64px;
+    height: 64px;
+}
+
+.label > img {
+    min-width: 64px;
+    min-height: 64px;
+    width: 100%;
+}
+
+.logo {
+    width: 64px;
+    height: 64px;
+}
+
+.logo > img {
+    min-width: 64px;
+    min-height: 64px;
+    width: 100%;
+}
+
+.Photo > input[type=file] {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+}
+
+@media screen and (max-width: 500px) {
+    .landscape {
+        width: 200px;
+        height: 150px;
+    }
+}

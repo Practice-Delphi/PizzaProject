@@ -30,7 +30,7 @@ class ValidationModel {
                         this.required(name, val);
                     } 
                     if (this.types.includes(el.type)) {
-                        this.validateType(name, el, val);
+                        this.validateType(name, el, val, valdata);
                     }
                     if (el.valid) {
                         el.valid(valdata[id]);
@@ -42,24 +42,25 @@ class ValidationModel {
             });
         }
     }
-    confirm(password, confirmPassword) {
-        if (password !== confirmPassword) {
-            this.errors['confirmPassword'] = `Password must be confirmed`;
-        }
-    }
-    validateType(name, el, val) {
+    validateType(name, el, val, valdata) {
         switch(el.type) {
             case 'email': return this.email(name, val);
             case 'key': return this.key(name, val);
             case 'number': return this.number(name, val);
             case 'password': return this.password(name, val);
             case 'phonenumber': return this.phonenumber(name, val);
+            case 'confirmPassword': return this.confirm(valdata[el.password], val);
             default: return null;
         }
     }
     required(name, val) {
         if (!val) {
             throw new Error(`${name} is required`);
+        }
+    }
+    confirm(password, confirmPassword) {
+        if (password && password !== confirmPassword) {
+            throw new Error(`Password must be confirmed`);
         }
     }
     email(name, val) {

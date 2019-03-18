@@ -47,45 +47,44 @@ export const uploadVehicle = (data, file) => (dispatch, getState) => {
         }
         return false;
     }
-    if (checkdata(data)) {
-        dispatch(updateStart());
-        if (token) {
-            fetch(`${apiurl}/Account/Driver/Venicle/AddVenicle`, {
-                method: 'POST',
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token.authToken}`,
-                }),
-                body: JSON.stringify(data)
-            })
-                .then(res => {
-                    if (res.status === 200 || res.status === 204 || res.status === 201 || res.status === 202) {
-                        if (file) {
-                            // dispatch(uploadVehPhoto(file, token));
-                        } else {
-                            dispatch(updateSuccess('Vehicle is update'));
-                            dispatch(getVehicle(token));
-                        }
-                    } else if (res.status === 401) {
-                        dispatch(refreshToken(token, uploadVehicle, data, file));
-                    } else {
-                        throw new Error(res.statusText);
-                    }
-                })
-                .catch(error => {
-                    dispatch(updateFailed(error.message));
-                    // dispatch(vehicleFailed(error.message));
-                });
-        } else {
-            dispatch(logout());
-        }
-    } else if (file) {
+    if (!token) dispatch(logout());
+    if (!checkdata(data) && file ) {
         dispatch(updateStart());
         dispatch(uploadVehPhoto(file, token));
     } else {
-        dispatch(updateFailed('No data and photo'));
+        dispatch(updateStart());
+        fetch(`${apiurl}/Account/Driver/Vehicle/AddVehicle`, {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token.authToken}`,
+            }),
+            body: JSON.stringify(data)
+        })
+            .then(res => {
+                if (res.status === 200 || res.status === 204 || res.status === 201 || res.status === 202) {
+                    if (file) {
+                        dispatch(uploadVehPhoto(file, token));
+                    } else {
+                        dispatch(updateSuccess('Vehicle is update'));
+                        dispatch(getVehicle(token));
+                    }
+                } else if (res.status === 401) {
+                    dispatch(refreshToken(token, uploadVehicle, data, file));
+                } else {
+                    throw new Error(res.statusText);
+                }
+            })
+            .then(data => {
+                dispatch(updateFailed(data))
+            })
+            .catch(error => {
+                dispatch(updateFailed(error.message));
+                // dispatch(vehicleFailed(error.message));
+            });
     }
 }
+
 
 // TODO: actionCreator upload Vehicle Photo
 export const uploadVehPhoto = (files, token) => (dispatch, getState) => {
@@ -95,7 +94,7 @@ export const uploadVehPhoto = (files, token) => (dispatch, getState) => {
             files.forEach(file => {
                 data.append('files', file);
             })
-            fetch(`${apiurl}/Account/Driver/Venicle/AddVenicleImage`, {
+            fetch(`${apiurl}/Account/Driver/Vehicle/AddVehicleImage`, {
                 method: 'POST',
                 headers: new Headers({
                     'Authorization': `Bearer ${token.authToken}`,
@@ -137,7 +136,7 @@ export const getVehicle = (tok) => (dispatch, getState) => {
         //     pictures: [],
         //     driverId: "9d930bc2-4444-4b47-89b4-63113c11414a",
         // }));
-        fetch(`${apiurl}/Account/Driver/Venicle/GetVenicle`, {
+        fetch(`${apiurl}/Account/Driver/Vehicle/GetVehicle`, {
             method: 'GET',
             headers: new Headers({
                 'Authorization': `Bearer ${token.authToken}`

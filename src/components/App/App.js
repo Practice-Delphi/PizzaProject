@@ -24,6 +24,12 @@ class App extends Component {
 
   componentDidMount() {
     this.props.runTest('yak vono mene zayebalo...');
+
+    // Need to hide preloader when app is load 
+    const preloader = document.getElementById("preloader");
+    if (preloader) preloader.style.display = 'none';
+
+    // Need to get current user if he exist
     this.props.getUser();
   }
 
@@ -36,11 +42,11 @@ class App extends Component {
           <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/sign-in-cust" render={() => <SignInForm type="customer" />} />
           <Route exact path="/sign-in-driver" render={() => <SignInForm type="driver" />} />
-          <Route exact path="/sign-in-sell" render={() => <SignInForm type="seller" />} />
+          <Route exact path="/sign-in-owner" render={() => <SignInForm type="owner" />} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/sign-up-cust" render={() => <SignUpForm type="customer" />} />
           <Route exact path="/sign-up-driver" render={() => <SignUpForm type="driver" />} />
-          <Route exact path="/sign-up-sell" render={() => <SignUpForm type="seller" />} />
+          <Route exact path="/sign-up-owner" render={() => <SignUpForm type="owner" />} />
           <Route exact path="/profile" component={Profile} />
         </Switch>
       </Router>

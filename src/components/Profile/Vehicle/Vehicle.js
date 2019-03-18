@@ -8,20 +8,20 @@ import defaultphoto from '../../../assets/default-vehicle.png';
 import Loading from '../../Loading/Loading';
 import Alert from '../../Alert/Alert';
 
+import PhotoWrap from '../../common/PhotoWrap';
+
 import { connect } from 'react-redux';
 
 import { getVehicle } from '../../../actions/vehiclesaction';
 import { getPhoto } from '../../../actions/photoaction';
 
 class Vehicle extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
+    //     }
+    // }
     componentDidMount() {
         const { veh, loading } = this.props.vehData;
         const { getVehicle } = this.props;
@@ -40,74 +40,42 @@ class Vehicle extends Component {
             });
         }
     }
-
-    renderPhoto(id) {
-        const { photosData, getPhoto } = this.props;
-        if (photosData[id]) {
-            const { loading, url, error } = photosData[id];
-            if (url) {
-                return <img src={url} alt='photo' />;
-            }
-            if (loading) {
-                return <Loading />
-            }
-            if (error) {
-                return <Alert message='Photo don`t load' click={() => { getPhoto(id) }} />
-            }
-            return <img src={defaultphoto} alt='photo' />;
-        }
-        return <img src={defaultphoto} alt='photo' />;
-    }
-
+    
     renderPictures(pictures) {
-        return pictures.map((id, key) => {
-            return <div key={id} className={`vehicleImage`}>
-                {this.renderPhoto(id)}
-            </div>
-        })
+        if (Array.isArray(pictures)) {
+            return pictures.map((id) => {
+                return <PhotoWrap key={id} id={id} defaulturl={defaultphoto} styles="landscape" alt="vehicle-image"/>
+            })
+        }
+        return null;
     }
 
     render() {
         const { veh, error, loading } = this.props.vehData;
         const { getVehicle } = this.props;
-        if (veh) {
-            const { pictures } = veh;
-            return (
-                <div className="vehicleContainer">
+        return (
+            <div className="container col ai-center vehicleContainer">
+                { loading && <Loading /> }
+                { !loading && error && <Alert message="Vehicle dont load" click={() => { getVehicle() }}/> }
+                {veh && !loading && !error && (
                     <div className="vehicleInfo">
-                        <h1>Your vehicle info</h1>
-                        <h3><label>Number:</label> {veh.number}</h3>
-                        <h3><label>Model:</label> {veh.model}</h3>
-                        <h3><label>Brand:</label> {veh.brand}</h3>
-                        <h3><label>Color:</label> {veh.color}</h3>
-                    </div>
+                    <h1>Your vehicle info</h1>
+                    <h3><label>Number:</label> {veh.number}</h3>
+                    <h3><label>Model:</label> {veh.model}</h3>
+                    <h3><label>Brand:</label> {veh.brand}</h3>
+                    <h3><label>Color:</label> {veh.color}</h3>
+                </div>)}
+                {veh && !loading && !error && (
                     <div className="vehicleImages">
-                        {this.renderPictures(pictures)}
+                        {this.renderPictures(veh.pictures)}
                     </div>
-                </div>
-            );
-        }
-        if (error) {
-            return (
-                <div className="vehicleContainer">
-                    <Alert message="Vehicle dont load" click={() => { getVehicle() }}/>
-                </div>
-            )
-        }
-        if (loading) {
-            return (
-                <div className="vehicleContainer">
-                    <Loading />
-                </div>
-            )
-        }
-        return null;
+                )}
+            </div>
+        );
     }
 }
 
 Vehicle.propTypes = {
-    history: PropTypes.object,
-    userData: PropTypes.object,
     vehData: PropTypes.object,
     getVehicle: PropTypes.func,
     getPhoto: PropTypes.func,
@@ -115,8 +83,6 @@ Vehicle.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    history: state.historyData.history,
-    userData: state.userData,
     vehData: state.vehData,
     photosData: state.photosData,
 });

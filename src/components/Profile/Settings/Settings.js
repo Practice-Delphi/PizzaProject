@@ -5,6 +5,8 @@ import ProfileData from './ProfileData';
 import VehicleForm from './VehicleForm';
 import LicenseForm from './LicenseForm';
 
+import { allroles } from '../../../appconfig';
+
 import { connect } from 'react-redux';
 import UploadPhoto from './UploadPhoto';
 
@@ -19,7 +21,7 @@ class Settings extends Component {
 
     renderDriverButton(name, type) {
         const { user } = this.props.userData;
-        if (user && user.role === 'driver') {
+        if (user && allroles.get(user.role) === 'Driver') {
             return (
                 <div className={`settingsTypeBarButton ${(this.state.show === type) ? 'selected' : ''}`}
                     onClick={() => { this.setState({ show: type }) }}>
@@ -43,7 +45,7 @@ class Settings extends Component {
     
     renderSettingsTypeBar() {
         return (
-            <div className="settingsTypeBar">
+            <div className="card settingsTypeBar">
                 <div className={`settingsTypeBarButton ${(this.state.show === 'ProfileData') ? 'selected' : ''}`}
                     onClick={() => { this.setState({ show: 'ProfileData' }) }}>
                     Profile Data
@@ -62,11 +64,9 @@ class Settings extends Component {
     }
     render() {
         return (
-            <div className=" settingsContainer">
-                <div className="settingsTypeBar">
-                    {this.renderSettingsTypeBar()}
-                </div>
-                <div className="settingsMain">
+            <div className="settingsContainer">
+                {this.renderSettingsTypeBar()}
+                <div className="container col ai-center card settingsMain">
                     {this.renderSettingsMain()}
                 </div>
             </div>

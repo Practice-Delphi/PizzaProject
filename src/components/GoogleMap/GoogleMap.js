@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import style from './GoogleMap.css';
+import './GoogleMap.css';
+
+import Photo from '../common/Photo';
 
 import GoogleMapReact from 'google-map-react';
 import defaultllogo from '../../assets/default-logo.png';
@@ -56,9 +58,7 @@ const Label = ({ name, logo, key }) => {
             <div className='labelText'>
                 {name}
             </div>
-            <div className="labelImage">
-                <img src={(logo) ? logo: defaultllogo} alt='label' />
-            </div>
+            <Photo styles="label round" url={logo ? logo : defaultllogo}/>
             <div className="labelShape"></div>
         </div>
     );

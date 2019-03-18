@@ -11,6 +11,7 @@ import { vehData } from './vehiclereducer';
 import { photosData } from './photoreduser';
 import { restaurantsData, restaurantStatus} from './restaurantreducer';
 import { docData } from './docreducer';
+import { dishesData, categoryData } from "./dishreducer";
 
 // Here combine custom reducers
 export default combineReducers({
@@ -24,5 +25,7 @@ export default combineReducers({
     photosData,
     restaurantsData,
     restaurantStatus,
-    docData
+    docData,
+    dishesData,
+    categoryData
 });

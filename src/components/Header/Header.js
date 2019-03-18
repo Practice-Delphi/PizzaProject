@@ -15,55 +15,40 @@ class Header extends Component {
             burger: false,
         }
     }
+    renderLink(link, name) {
+        return (
+            <div className="castomNavLinkDiv">
+                <NavLink to={link} className="headerLink" >{name}</NavLink>
+                <div className="castomHover"></div>
+            </div>
+        )
+    }
     renderButtons() {
         const { user } = this.props.userData;
-        if (user) {
-            return (
-                <div className="headerRight">
+        return (
+            <div className="headerRight">
+                {user && this.renderLink('/profile', "Profile")}
+                {user && (
                     <div className="castomNavLinkDiv">
-                        <NavLink to="/profile" className="headerLink" >Profile</NavLink>
+                        <button className="headerLinkButton" onClick={this.props.logout}>Log out</button>
                         <div className="castomHover"></div>
                     </div>
-                    <div className="castomNavLinkDiv">
-                        <button className="headerLinkButtom" onClick={this.props.logout}>Log out</button>
-                        <div className="castomHover"></div>
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <div className="headerRight">
-                    <div className="castomNavLinkDiv">
-                        <NavLink to="/sign-in" className="headerLink" >Sign in</NavLink>
-                        <div className="castomHover"></div>
-                    </div>
-                    <div className="castomNavLinkDiv">
-                        <NavLink to="/sign-up" className="headerLink" >Sign up</NavLink>
-                        <div className="castomHover"></div>
-                    </div>
-                </div>
-            );
-        }
-    }
-    renderLogOut() {
+                )}
+                {!user && this.renderLink('/sign-in', "Sign in")}
+                {!user && this.renderLink('/sign-up', "Sign up")}
+            </div>
+        );
     }
     renderBurger() {
-        const { user } = this.props.userData; 
-        if (user) {
-            return (
-                <ul className={`burgerContainer ${(this.state.burger) ? 'open' : ''}`}>
-                    <li className="burgerLink"><NavLink to="/profile" className="headerLink" >Profile</NavLink></li>
-                    <li className="burgerLink"><button className="headerLinkButtom" onClick={this.props.logout}>Log out</button></li>
-                </ul>
-            );
-        } else {
-            return (
-                <ul className={`burgerContainer ${(this.state.burger) ? 'open' : ''}`}>
-                    <li className="burgerLink"><NavLink to="/sign-in" className="headerLink" >Sign in</NavLink></li>
-                    <li className="burgerLink"><NavLink to="/sign-up" className="headerLink" >Sign up</NavLink></li>
-                </ul>
-            );
-        }
+        const { user } = this.props.userData;
+        return (
+            <ul className={`burgerContainer ${(this.state.burger) ? 'burg-open' : ''}`}>
+                {user && <li className="burgerLink"><NavLink to="/profile" className="headerLink" >Profile</NavLink></li>}
+                {user && <li className="burgerLink"><button className="headerLinkButtom" onClick={this.props.logout}>Log out</button></li>}
+                {!user && <li className="burgerLink"><NavLink to="/sign-in" className="headerLink" >Sign in</NavLink></li>}
+                {!user && <li className="burgerLink"><NavLink to="/sign-up" className="headerLink" >Sign up</NavLink></li>}
+            </ul>
+        );
     }
     renderBurgerButton() {
         return (
@@ -76,8 +61,8 @@ class Header extends Component {
         return (
             <div className="header">
                 <div className="headerLeft">
-                    <div className="castomNavLinkDiv"><NavLink to="/home" className="headerLink">Home</NavLink> <div className="castomHover"></div></div>
-                    <div className="castomNavLinkDiv"><NavLink to="/home" className="headerLink">About</NavLink><div className="castomHover"></div></div>
+                    {this.renderLink("/home", "Home")}
+                    {this.renderLink("/home", "About")}
                 </div>
                 {this.renderButtons()}
                 {this.renderBurgerButton()}

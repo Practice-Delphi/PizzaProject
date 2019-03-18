@@ -1,4 +1,4 @@
-import { apiurl } from '../appconfig';
+import { apiurl, allroles } from '../appconfig';
 import { getPhoto } from './photoaction'
 
 export const USER_FETCH_START = 'USER_FETCH_START';
@@ -77,8 +77,16 @@ export const checkAndGetToken = (dispatch, getState) => {
     return null;
 }
 
+export const upRole = (role) => {
+    switch (role) {
+        case 'customer': return "Customer";
+        case 'driver': return "Driver";
+        case 'owner': return "Owner";
+        default: return null;
+    }
+}
+
 export const refreshToken = (tok, action, ...actionparams) => (dispatch, getState) => {
-    console.log('refresh');
     if (!getState().tokenData.loading) {
         dispatch(tokenStart());
         const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
@@ -102,7 +110,8 @@ export const refreshToken = (tok, action, ...actionparams) => (dispatch, getStat
                     }
                 })
                 .then(newtoken => {
-                    newtoken.role = token.role;
+                    // console.log(newtoken);
+                    newtoken.role = token.role || newtoken.roles[0];
                     newtoken.id = token.id;
                     dispatch(tokenSuccess(newtoken));
                     if (action) {
@@ -116,20 +125,15 @@ export const refreshToken = (tok, action, ...actionparams) => (dispatch, getStat
     }
 }
 
+
 export const logout = () => (dispatch) => {
     dispatch(clearAll());
 }
 
 export const registerUser = (role, regdata) => (dispatch, getState) => {
     dispatch(registerStart());
-
-    let Role = null;
-    switch(role) {
-        case 'customer': { Role = 'Customer'; break };
-        case 'driver': { Role = 'Driver'; break };
-        case 'seller': { Role = 'Owner'; break };
-        default: { Role = 'Customer' };
-    }
+    let Role = allroles.get(role);
+    // let Role = upRole(role);
     const url = `${apiurl}/Register/${Role}`;
 
     return fetch(url, {
@@ -197,20 +201,19 @@ export const loginUser = (logdata, role) => (dispatch, getState) => {
         });
 }
 
+export const loginUserBySocial = (token, refresh) => (dispatch, getState) => {
+
+    if (!token && !refresh) return;
+    // dispatch(getUser(Object.assign({},token,{ role:"customer"})))
+    dispatch(refreshToken({ authToken: token, refreshToken: refresh }, getUser))
+}
 
 export const getUser = (tok) => (dispatch, getState) => {
     const token = (tok) ? tok : checkAndGetToken(dispatch, getState);
     if (token) {
-        let Role = '';
-        switch(token.role) {
-            case 'customer': { Role = 'Customer'; break };
-            case 'driver': { Role = 'Driver'; break };
-            case 'seller': { Role = 'Owner'; break };
-            default: { Role = 'Customer' };
-        }
-
+        let Role = allroles.get(token.role);
+        // let Role = upRole(token.role);
         dispatch(userStart());
-
         return fetch(`${apiurl}/Account/${Role}/Get${Role}`, {
             method: 'GET',
             // mode: 'no-cors',

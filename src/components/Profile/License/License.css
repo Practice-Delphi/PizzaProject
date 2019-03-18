@@ -1,7 +1,4 @@
 .licenseContainer {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
     margin: 20px;
 }
 
@@ -17,18 +14,8 @@
     justify-content: space-around;
 }
 
-.licenseImage {
-    width: 100%;
-    max-width: 500px;
-    min-width: 300px;
-    max-height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.licenseImage > img {
-    width: 100%;
-    height: auto;
+@media screen and (max-width: 500px) {
+    .licenseContainer {
+        margin: 20px 10px;
+    }
 }
