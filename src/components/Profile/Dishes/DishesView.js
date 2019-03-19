@@ -41,7 +41,7 @@ class DishesView extends Component {
         return (
             // <div className="card dishRestaurantSelect">
             //     <h1>Choose restaurant</h1>
-                <select onChange={(e) => { this.setState({ selectedRestaurantId: e.target.value }) }}>
+                <select onChange={(e) => { this.setState({ selectedRestaurantId: e.target.value, selectedCategoryId: null }) }}>
                     <option></option>
                     {this.renderOptions(restaurants)}
                 </select>
@@ -53,7 +53,7 @@ class DishesView extends Component {
         const { restaurants, loading, error } = this.props.restaurantsData;
         const { getRestaurants } = this.props;
         return (
-            <div className="container col ai-stretch dishContainer">
+            <div className="container-global col ai-stretch dishContainer">
                 <div className="container col ai-stretch card dishRestaurantSelect">
                     <h1>Choose restaurant</h1>
                     { loading && <Loading /> }

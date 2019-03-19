@@ -19,8 +19,14 @@ body {
   padding: 5px;
 }
 
-.container {
+.container, .container-global {
   display: flex;
+}
+
+.container-global {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .row {

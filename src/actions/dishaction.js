@@ -1,5 +1,5 @@
-// import { apiurl } from '../appconfig';
-import { checkAndGetToken, logout, /*refreshToken*/ } from './authaction';
+import { apiurl } from '../appconfig';
+import { checkAndGetToken, logout, refreshToken } from './authaction';
 import { /*photoClear,*/ getPhoto } from './photoaction';
 
 export const FETCH_DISHES_START = 'FETCH_DISHES_START';
@@ -9,6 +9,11 @@ export const FETCH_DISHES_FAILED = 'FETCH_DISHES_FAILED';
 export const FETCH_CATEGORY_START = 'FETCH_CATEGORY_START';
 export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
 export const FETCH_CATEGORY_FAILED = 'FETCH_CATEGORY_FAILED';
+
+export const CATEGORY_CHANGE_START = 'CATEGORY_CHANGE_START';
+export const CATEGORY_CHANGE_SUCCESS = 'CATEGORY_CHANGE_SUCCESS';
+export const CATEGORY_CHANGE_FAILED = 'CATEGORY_CHANGE_FAILED';
+export const CATEGORY_CHANGE_CLEAR = 'CATEGORY_CHANGE_CLEAR';
 
 export const fetchStart = (id) => ({
     type: FETCH_DISHES_START,
@@ -39,6 +44,63 @@ export const fetchCategoryFailed = (id, error) => ({
     type: FETCH_CATEGORY_FAILED,
     id, error
 });
+
+export const changeCategoryStart = () => ({
+    type: CATEGORY_CHANGE_START
+});
+
+export const changeCategorySuccess = (success) => ({
+    type: CATEGORY_CHANGE_SUCCESS,
+    success
+});
+
+export const changeCategoryFailed = (error) => ({
+    type: CATEGORY_CHANGE_FAILED,
+    error
+});
+
+export const changeCategoryClear = () => ({
+    type: CATEGORY_CHANGE_CLEAR
+});
+
+export const createCategoryByRestaurant = (restaurantId, name, image) => (dispatch, getState) => {
+    if (!restaurantId) return;
+    if (!name) return;
+    if (!image) return;
+
+    const token = checkAndGetToken(dispatch, getState);
+    if (!token) {
+        dispatch(logout());
+        return;
+    }
+
+    dispatch(changeCategoryStart());
+
+    const data = {
+        name,
+        restaurantId,
+        image: new FormData().append('file', image)
+    }
+    fetch(`${apiurl}/Category/Create`, {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': `Bearer ${token.authToken}`,
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (res.status === 200) {
+                dispatch(changeCategorySuccess('Create was success'));
+                return res.json();
+            } else if (res.status === 401) {
+                dispatch(refreshToken(token, createCategoryByRestaurant, restaurantId, name, image));
+            } else {
+                throw new Error(res.statusText);
+            }
+        })
+        .catch(error => dispatch(changeCategoryFailed(`Create was failed: ${error.message}`)));
+}
 
 export const getDishesByCategory = (id) => (dispatch, getState) => {
     if (!id) return;

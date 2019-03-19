@@ -15,7 +15,7 @@ const UserInfo = ({ userData, getUser }) => {
     const { user, loading, error } = userData;
     const { profileImageId, role, phoneNumber, email, firstName, lastName } = user;
     return (
-        <div className="container col ai-center ProfileContainer">
+        <div className="container-global col ai-center ProfileContainer">
             { loading && <Loading /> }
             { error && <Alert message="Info dont load" click={() => { getUser() }} /> }
             { !error && !loading && (

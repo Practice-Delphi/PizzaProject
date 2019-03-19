@@ -65,6 +65,26 @@
     z-index: 1;
 }
 
+.photo-input {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: opacity .3s ease-out;
+}
+
+.photo-input > input {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    z-index: 2;
+}
+
 @media screen and (max-width: 500px) {
     .landscape {
         width: 200px;

@@ -49,7 +49,7 @@ class License extends Component {
         const { doc, error, loading } = this.props.docData;
         const { getDocument } = this.props;
         return (
-            <div className='container col ai-streatch card licenseContainer'>
+            <div className='container-global col ai-streatch card licenseContainer'>
                 <h1>Your License</h1>
                 {loading && <Loading />}
                 {!loading && error && <Alert message="License dont load" click={() => { getDocument() }} />}

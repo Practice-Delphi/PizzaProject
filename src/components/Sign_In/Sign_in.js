@@ -11,6 +11,7 @@ import { loginUserBySocial } from '../../actions/authaction'
 
 class SignIn extends Component {
 
+  
   componentWillMount() {
     if (this.props.location) {
       // const type = qs.parse(this.props.location.search).type;

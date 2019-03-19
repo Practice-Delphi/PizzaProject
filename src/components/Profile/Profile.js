@@ -8,6 +8,8 @@ import UserInfo from './UserInfo/UserInfo'
 import Settings from './Settings/Settings'
 import Vehicle from './Vehicle/Vehicle';
 import License from './License/License';
+import GlobalWrap from '../common/GlobalWrap';
+import Loading from '../Loading/Loading';
 
 import uparrow from '../../assets/uparrow.svg';
 
@@ -77,26 +79,6 @@ class Profile extends Component {
 
     renderToolbar() {
         const { user } = this.props.userData;
-        // if (user && user.role === 'driver') {
-        //     return (
-        //         <div className="ProfToolBar" >
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Vehicle' }) }}>Vehicle<div className="castomHover2line"></div></div>
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'License' }) }}>License<div className="castomHover2line"></div></div>
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
-        //         </div>
-        //     )
-        // }
-        // if (user && user.role === 'owner') {
-        //     return (
-        //         <div className="ProfToolBar" >
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Restaurants' }) }}>Restaurants<div className="castomHover2line"></div></div>
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Dishes' }) }}>Dishes<div className="castomHover2line"></div></div>
-        //             <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
-        //         </div>
-        //     )
-        // }
         return (
             <div className="ProfToolBar" >
                 <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'UserInfo' }) }}>User Info<div className="castomHover2line"></div></div>
@@ -104,8 +86,7 @@ class Profile extends Component {
                 { user && allroles.get(user.role) === 'Driver' && <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'License' }) }}>License<div className="castomHover2line"></div></div>}
                 { user && fullroles.get(user.role) === 'Owner' && <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Restaurants' }) }}>Restaurants<div className="castomHover2line"></div></div>}
                 { user && fullroles.get(user.role) === 'Owner' &&  <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Dishes' }) }}>Dishes<div className="castomHover2line"></div></div>}
-                <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div>
-                
+                <div className="castomNavLinkDiv2line" onClick={() => { this.setState({ show: 'Settings' }) }}>Settings<div className="castomHover2line"></div></div> 
             </div>
         )
     }
@@ -121,17 +102,16 @@ class Profile extends Component {
         }
     }
     render() {
-        if (this.props.userData.user) {
-            return (
-                <div>
-                    <Header></Header>
-                    {this.renderToolbar()}
-                    {this.renderMain()}
-                    {this.renderUpArrow()}
-                </div>
-            );
-        }
-        return null;
+        const { loading, user } = this.props.userData;
+        return (
+            <div>
+                <Header></Header>
+                {this.renderToolbar()}
+                {loading && <GlobalWrap><Loading /></GlobalWrap>}
+                {!loading && user && this.renderMain()}
+                {this.renderUpArrow()}
+            </div>
+        );
     }
 }
 

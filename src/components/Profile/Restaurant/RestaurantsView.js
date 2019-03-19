@@ -78,7 +78,7 @@ class RestaurantView extends Component {
     const { restaurants, loading, error } = this.props.restaurantsData;
     const { getRestaurants } = this.props;
     return (
-      <div className="container col center restContainer">
+      <div className="container-global col center restContainer">
         <h1>Your restaurants</h1>
         {loading && <Loading />}
         { !loading && error && (

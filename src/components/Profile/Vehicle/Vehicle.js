@@ -54,7 +54,7 @@ class Vehicle extends Component {
         const { veh, error, loading } = this.props.vehData;
         const { getVehicle } = this.props;
         return (
-            <div className="container col ai-center vehicleContainer">
+            <div className="container-global col ai-center vehicleContainer">
                 { loading && <Loading /> }
                 { !loading && error && <Alert message="Vehicle dont load" click={() => { getVehicle() }}/> }
                 {veh && !loading && !error && (

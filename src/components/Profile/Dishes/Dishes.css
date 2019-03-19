@@ -85,6 +85,12 @@
     opacity: .7;
 }
 
+.categoryForm {
+    max-width: 500px;
+    width: auto;
+    min-width: 250px;
+}
+
 @media screen and (max-width: 800px) {
     .dishesList {
         grid-template-columns: 1fr 1fr;
