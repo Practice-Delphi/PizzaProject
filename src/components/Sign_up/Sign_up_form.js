@@ -106,8 +106,8 @@ class SignUpForm extends Component {
                         <TextError error={errors.email}/>
                         <input
                             className="signInInput"
-                            type="text" placeholder="Your Private Key"
-                            onChange={(e) => { this.setState({ privateKey: e.target.value }) }}
+                            type="text" placeholder="Your Email"
+                            onChange={(e) => { this.setState({ email: e.target.value }) }}
                             required />
                         <label className="signupFieldLabel">Password</label>
                         <TextError error={errors.password}/>
