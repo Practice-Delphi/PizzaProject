@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUserBySocial } from '../../actions/authaction'
 
-
 class SignIn extends Component {
 
   
